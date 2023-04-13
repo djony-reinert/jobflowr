@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SalaryInterval < ActiveHash::Base
   self.data = [
     {

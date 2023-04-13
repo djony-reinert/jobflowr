@@ -5,9 +5,9 @@ module SafeMigrationHelper
     set_lock = proc { execute("SET LOCAL lock_timeout='#{time.to_i}ms';") }
     if reverting?
       yield
-      reversible { |dir| dir.down &set_lock }
+      reversible { |dir| dir.down(&set_lock) }
     else
-      reversible { |dir| dir.up &set_lock }
+      reversible { |dir| dir.up(&set_lock) }
       yield
     end
   end

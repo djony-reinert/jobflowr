@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Api
   class DepartmentsController < ApplicationController
     def index
@@ -20,4 +22,3 @@ module Api
     end
   end
 end
-

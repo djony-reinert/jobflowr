@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+# rubocop:disable all
+
 class CreateUsers < ActiveRecord::Migration[7.0]
   include SafeMigrationHelper
 

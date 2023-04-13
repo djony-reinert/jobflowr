@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AccessType < ActiveHash::Base
   self.data = [
     {

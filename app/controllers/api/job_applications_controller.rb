@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Api
   class JobApplicationsController < ApplicationController
     def index
@@ -20,8 +22,16 @@ module Api
     end
 
     def create
-      sql = 'INSERT INTO job_applications (candidate_id, job_id, candidate_status_id, cover_letter_id, resume_id, created_at, updated_at) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *'
-      values = [job_application_params[:candidate_id], job_application_params[:job_id], job_application_params[:candidate_status_id], job_application_params[:cover_letter_id], job_application_params[:resume_id], Time.now, Time.now]
+      sql = 'INSERT INTO job_applications (candidate_id, job_id, candidate_status_id, cover_letter_id, resume_id, created_at, updated_at) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *' # rubocop:disable Layout/LineLength
+      values = [
+        job_application_params[:candidate_id],
+        job_application_params[:job_id],
+        job_application_params[:candidate_status_id],
+        job_application_params[:cover_letter_id],
+        job_application_params[:resume_id],
+        Time.now,
+        Time.now
+      ]
       result = exec_query(sql: sql, values: values)
 
       if result.present?
@@ -32,8 +42,16 @@ module Api
     end
 
     def update
-      sql = 'UPDATE job_applications SET candidate_id = $1, job_id = $2, candidate_status_id = $3, cover_letter_id = $4, resume_id = $5, updated_at = $6 WHERE id = $7 RETURNING *'
-      values = [job_application_params[:candidate_id], job_application_params[:job_id], job_application_params[:candidate_status_id], job_application_params[:cover_letter_id], job_application_params[:resume_id], Time.now, params[:id]]
+      sql = 'UPDATE job_applications SET candidate_id = $1, job_id = $2, candidate_status_id = $3, cover_letter_id = $4, resume_id = $5, updated_at = $6 WHERE id = $7 RETURNING *' # rubocop:disable Layout/LineLength
+      values = [
+        job_application_params[:candidate_id],
+        job_application_params[:job_id],
+        job_application_params[:candidate_status_id],
+        job_application_params[:cover_letter_id],
+        job_application_params[:resume_id],
+        Time.now,
+        params[:id]
+      ]
       result = exec_query(sql: sql, values: values)
 
       if result.present?

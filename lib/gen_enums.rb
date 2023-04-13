@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 # Set the input and output directories
 input_folder = File.join(__dir__, '../app/enumerations')
 output_folder = File.join(__dir__, '../react/src/enums')
 
 # Loop through all .rb files in the input folder
-Dir.glob(File.join(input_folder, '*.rb')).each do |file_path|
+Dir.glob(File.join(input_folder, '*.rb')).sort.each do |file_path|
   # Determine the class name based on the file name
   class_name = File.basename(file_path, '.rb').camelize
 

@@ -1,25 +1,28 @@
-source "https://rubygems.org"
+# frozen_string_literal: true
+
+source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "2.7.6"
+ruby '2.7.6'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 7.0.4", ">= 7.0.4.3"
+gem 'rails', '~> 7.0.4', '>= 7.0.4.3'
 
 # Use the Puma web server [https://github.com/puma/puma]
-gem "puma", "~> 5.0"
+gem 'puma', '~> 5.0'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 gem 'rack-cors', require: 'rack/cors'
 
+gem 'active_hash'
 gem 'bcrypt'
+gem 'mime-types'
 gem 'pg'
 gem 'pry-rails'
-gem 'active_hash'
-gem 'mime-types'
+gem 'rubocop-rails'
 
 group :development, :test do
   gem 'faker'
@@ -27,5 +30,4 @@ group :development, :test do
   gem 'pry-remote', require: false
 end
 
-
-gem "aws-sdk-s3", "~> 1.120"
+gem 'aws-sdk-s3', '~> 1.120'
