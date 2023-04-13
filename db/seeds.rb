@@ -76,7 +76,7 @@ jobs = []
     status_id: enums[:job_status],
     salary_maximum: Faker::Number.between(from: 50_000, to: 150_000),
     salary_minimum: Faker::Number.between(from: 20_000, to: 50_000),
-    salary_interval: %w[hourly monthly annually].sample,
+    salary_interval: SalaryInterval.all.map { |interval| interval[:friendly_name] }.sample,
     career_level_id: enums[:career_level],
     desired_degree_id: enums[:desired_degree],
     remote_type_id: enums[:remote_type],
