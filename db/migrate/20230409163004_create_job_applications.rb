@@ -1,8 +1,9 @@
 # frozen_string_literal: true
+# rubocop:disable all
 
 class CreateJobApplications < ActiveRecord::Migration[7.0]
   include SafeMigrationHelper
-  
+
   def up
     with_lock_timeout do
       create_table :job_applications, id: false do |t|

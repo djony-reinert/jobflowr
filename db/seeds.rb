@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 def enums
   {
     access_type: Faker::Number.between(from: AccessType.data.pluck(:id).min, to: AccessType.data.pluck(:id).max),
@@ -6,8 +8,8 @@ def enums
     desired_degree: Faker::Number.between(from: Degree.data.pluck(:id).min, to: Degree.data.pluck(:id).max),
     remote_type: Faker::Number.between(from: JobRemoteType.data.pluck(:id).min, to: JobRemoteType.data.pluck(:id).max),
     gender: Faker::Number.between(from: Gender.data.pluck(:id).min, to: Gender.data.pluck(:id).max),
-    candidate_status: Faker::Number.between(from: CandidateStatus.data.pluck(:id).min, to: CandidateStatus.data.pluck(:id).max),
-    candidate_doc_type: Faker::Number.between(from: CandidateDocType.data.pluck(:id).min, to: CandidateDocType.data.pluck(:id).max)
+    candidate_status: Faker::Number.between(from: CandidateStatus.data.pluck(:id).min, to: CandidateStatus.data.pluck(:id).max), # rubocop:disable Layout/LineLength
+    candidate_doc_type: Faker::Number.between(from: CandidateDocType.data.pluck(:id).min, to: CandidateDocType.data.pluck(:id).max) # rubocop:disable Layout/LineLength
   }
 end
 
@@ -72,8 +74,8 @@ jobs = []
     company: Faker::Company.name,
     department_id: departments.sample.id,
     status_id: enums[:job_status],
-    salary_maximum: Faker::Number.between(from: 50000, to: 150000),
-    salary_minimum: Faker::Number.between(from: 20000, to: 50000),
+    salary_maximum: Faker::Number.between(from: 50_000, to: 150_000),
+    salary_minimum: Faker::Number.between(from: 20_000, to: 50_000),
     salary_interval: %w[hourly monthly annually].sample,
     career_level_id: enums[:career_level],
     desired_degree_id: enums[:desired_degree],
@@ -94,9 +96,7 @@ candidates = []
   unique_email = false
   until unique_email
     email = Faker::Internet.email(name: "#{first_name} #{last_name}")
-    unless Candidate.exists?(email: email)
-      unique_email = true
-    end
+    unique_email = true unless Candidate.exists?(email: email)
   end
 
   unique_name = false

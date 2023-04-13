@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+# rubocop:disable all
 
 class CreateDocuments < ActiveRecord::Migration[7.0]
   include SafeMigrationHelper
@@ -21,9 +22,7 @@ class CreateDocuments < ActiveRecord::Migration[7.0]
     end
 
     def down
-      with_lock_timeout do
-        drop_table :documents
-      end
+      with_lock_timeout { drop_table :documents }
     end
   end
 end

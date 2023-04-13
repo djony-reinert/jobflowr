@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CareerLevel < ActiveHash::Base
   self.data = [
     {

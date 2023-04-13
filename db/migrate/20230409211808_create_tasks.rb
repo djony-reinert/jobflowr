@@ -1,8 +1,9 @@
 # frozen_string_literal: true
+# rubocop:disable all
 
 class CreateTasks < ActiveRecord::Migration[7.0]
   include SafeMigrationHelper
-  
+
   def up
     with_lock_timeout do
       create_table :tasks, id: false do |t|

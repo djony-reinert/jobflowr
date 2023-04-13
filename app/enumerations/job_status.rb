@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class JobStatus < ActiveHash::Base
   self.data = [
     {
@@ -40,7 +42,7 @@ class JobStatus < ActiveHash::Base
       id: 7,
       name: 'archived',
       friendly_name: 'Archived',
-      description: 'The job has been closed and is no longer visible to job seekers, but is still kept for record-keeping purposes'
+      description: 'The job has been closed and is no longer visible to job seekers, but is still kept for record-keeping purposes' # rubocop:disable Layout/LineLength
     }
   ]
 end

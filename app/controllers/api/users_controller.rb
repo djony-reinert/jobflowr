@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Api
   class UsersController < ApplicationController
     skip_before_action :verify_authenticity_token
@@ -21,8 +23,22 @@ module Api
     end
 
     def create
-      sql = 'INSERT INTO users (id, email, password_digest, first_name, last_name, phone, postal_code, country, state, city, street, role_id, created_at, updated_at) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14) RETURNING *'
-      values = [params[:email], BCrypt::Password.create(params[:password]), params[:first_name], params[:last_name], params[:phone], params[:postal_code], params[:country], params[:state], params[:city], params[:street], 1,Time.now, Time.now]
+      sql = 'INSERT INTO users (id, email, password_digest, first_name, last_name, phone, postal_code, country, state, city, street, role_id, created_at, updated_at) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14) RETURNING *' # rubocop:disable Layout/LineLength
+      values = [
+        params[:email],
+        BCrypt::Password.create(params[:password]),
+        params[:first_name],
+        params[:last_name],
+        params[:phone],
+        params[:postal_code],
+        params[:country],
+        params[:state],
+        params[:city],
+        params[:street],
+        1,
+        Time.now,
+        Time.now
+      ]
       result = exec_query(sql: sql, values: values)
 
       if result.present?
@@ -33,8 +49,20 @@ module Api
     end
 
     def update
-      sql = 'UPDATE users SET email = $1, first_name = $2, last_name = $3, phone = $4, postal_code = $5, country = $6, state = $7, city = $8, street = $9, updated_at = $10 WHERE id = $11 RETURNING *'
-      values = [params[:email], params[:first_name], params[:last_name], params[:phone], params[:postal_code], params[:country], params[:state], params[:city], params[:street], Time.now, params[:id]]
+      sql = 'UPDATE users SET email = $1, first_name = $2, last_name = $3, phone = $4, postal_code = $5, country = $6, state = $7, city = $8, street = $9, updated_at = $10 WHERE id = $11 RETURNING *' # rubocop:disable Layout/LineLength
+      values = [
+        params[:email],
+        params[:first_name],
+        params[:last_name],
+        params[:phone],
+        params[:postal_code],
+        params[:country],
+        params[:state],
+        params[:city],
+        params[:street],
+        Time.now,
+        params[:id]
+      ]
       result = exec_query(sql: sql, values: values)
 
       if result.present?
@@ -59,7 +87,19 @@ module Api
     private
 
     def user_params
-      params.permit(:email, :password, :first_name, :last_name, :phone, :postal_code, :country, :state, :city, :street, :role_id)
+      params.permit(
+        :email,
+        :password,
+        :first_name,
+        :last_name,
+        :phone,
+        :postal_code,
+        :country,
+        :state,
+        :city,
+        :street,
+        :role_id
+      )
     end
   end
 end

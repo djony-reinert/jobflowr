@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module TableDefinitionExtension
   def userstamps
     column(:created_by, :string, limit: 22)
@@ -6,4 +7,4 @@ module TableDefinitionExtension
   end
 end
 
-ActiveRecord::ConnectionAdapters::TableDefinition.send(:include, TableDefinitionExtension)
+ActiveRecord::ConnectionAdapters::TableDefinition.include TableDefinitionExtension
