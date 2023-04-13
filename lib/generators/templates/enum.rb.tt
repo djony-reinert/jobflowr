@@ -1,0 +1,11 @@
+class <%= class_name %> < ActiveHash::Base
+  self.data = [
+<% data.each_with_index do |d, i| -%>
+    {
+      id: <%= i + 1 %>,
+      name: '<%= d['name'] %>',
+      friendly_name: '<%= d['friendly_name'] %>'
+    }<%= ',' unless i == data.size - 1 %>
+<% end -%>
+  ]
+end

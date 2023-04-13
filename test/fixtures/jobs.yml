@@ -1,0 +1,43 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  description: MyString
+  location: MyString
+  company: MyString
+  status_id: 1
+  department_id: MyString
+  salary_maximum: 1
+  salary_minimum: 1
+  salary_interval: MyString
+  career_level_id: 1
+  desired_degree_id: 1
+  management_experience_id: 1
+  remote_type_id: 1
+  published: false
+  filled_on: 
+  created_by: MyString
+  updated_by: MyString
+  created_on: 
+  updated_on: 
+
+two:
+  title: MyString
+  description: MyString
+  location: MyString
+  company: MyString
+  status_id: 1
+  department_id: MyString
+  salary_maximum: 1
+  salary_minimum: 1
+  salary_interval: MyString
+  career_level_id: 1
+  desired_degree_id: 1
+  management_experience_id: 1
+  remote_type_id: 1
+  published: false
+  filled_on: 
+  created_by: MyString
+  updated_by: MyString
+  created_on: 
+  updated_on: 
