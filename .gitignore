@@ -12,7 +12,7 @@
 /db/*.sqlite3-*
 
 # Ignore all logfiles and tempfiles.
-/log/.keep
+/log/*
 /tmp/*
 !/log/.keep
 !/tmp/.keep
@@ -25,3 +25,5 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+/db/schema.rb
