@@ -1,23 +1,16 @@
 import logo from './logo.svg';
 import './App.css';
+import * as React from 'react';
+import Chip from '@mui/material/Chip';
+import Stack from '@mui/material/Stack';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload sdasdasdad.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn ss  React
-        </a>
-      </header>
+      <Stack direction="row" spacing={1}>
+        <Chip label="Chip Filled" />
+        <Chip label="Chip Outlined" variant="outlined" />
+      </Stack>
     </div>
   );
 }
