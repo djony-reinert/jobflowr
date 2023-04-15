@@ -127,6 +127,8 @@ GEM
     nio4r (2.5.9)
     nokogiri (1.14.2-x86_64-darwin)
       racc (~> 1.4)
+    nokogiri (1.14.2-x86_64-linux)
+      racc (~> 1.4)
     parallel (1.22.1)
     parser (3.2.2.0)
       ast (~> 2.4.1)
@@ -142,7 +144,7 @@ GEM
     pry-remote (0.1.8)
       pry (~> 0.9)
       slop (~> 3.0)
-    puma (5.6.5)
+    puma (6.2.1)
       nio4r (~> 2.0)
     racc (1.6.2)
     rack (2.2.6.4)
@@ -209,6 +211,7 @@ GEM
 
 PLATFORMS
   x86_64-darwin-21
+  x86_64-linux
 
 DEPENDENCIES
   active_hash
@@ -220,14 +223,14 @@ DEPENDENCIES
   pry-byebug
   pry-rails
   pry-remote
-  puma (~> 5.0)
+  puma (~> 6.2)
   rack-cors
   rails (~> 7.0.4, >= 7.0.4.3)
   rubocop-rails
   tzinfo-data
 
 RUBY VERSION
-   ruby 2.7.6p219
+   ruby 3.2.0p0
 
 BUNDLED WITH
    2.4.4
