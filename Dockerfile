@@ -1,5 +1,5 @@
 # Use an official Ruby runtime as a parent image
-FROM ruby:2.7.6
+FROM ruby:3.2.0
 
 # Install PostgreSQL server
 RUN apt-get update && apt-get install -y postgresql-client postgresql
@@ -25,6 +25,7 @@ RUN service postgresql start && \
     bundle exec rails db:migrate && \
     bundle exec rails db:seed
 
+RUN if [ -f ../tmp/pids/server.pid ]; then rm ../tmp/pids/server.pid; fi
+
 # Start the PostgreSQL service and the application server
 CMD service postgresql start && bundle exec rails server -b 0.0.0.0
-EXPOSE 3000
