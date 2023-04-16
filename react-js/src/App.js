@@ -11,6 +11,7 @@ function App() {
         <Chip label="Chip Filled" />
         <Chip label="Chip Outlined" variant="outlined" />
       </Stack>
+    batata
     </div>
   );
 }
