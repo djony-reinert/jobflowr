@@ -25,7 +25,5 @@ RUN service postgresql start && \
     bundle exec rails db:migrate && \
     bundle exec rails db:seed
 
-RUN if [ -f ../tmp/pids/server.pid ]; then rm ../tmp/pids/server.pid; fi
-
 # Start the PostgreSQL service and the application server
 CMD service postgresql start && bundle exec rails server -b 0.0.0.0
