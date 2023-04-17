@@ -28,6 +28,12 @@
   "rules": {
     "prettier/prettier": "off",
     "react/prop-types": "off",
-    "react-hooks/exhaustive-deps": "off"
+    "react-hooks/exhaustive-deps": "off",
+    "no-unused-vars": "warn",
+    "no-undef": "warn",
+    "no-shadow": "warn",
+    "react/jsx-key": "warn",
+    "react/display-name": "off",
+    "react/react-in-jsx-scope": "warn"
   }
 }
