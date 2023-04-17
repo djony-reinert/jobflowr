@@ -7,12 +7,4 @@ services:
       - "3000:3000"
     volumes:
       - .:/app
-  jobflowr-react:
-    build: ./react-js
-    image: jobflowr-react
-    ports:
-      - "8000:3000"
-    depends_on:
-      - jobflowr-api
-    volumes:
-      - ./react-js:/app
+      - /app/react-js
