@@ -1,11 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { memo } from 'react';
-// @mui
 import { Box } from '@mui/material';
-//
 import { StyledRootScrollbar, StyledScrollbar } from './styles';
-
-// ----------------------------------------------------------------------
 
 Scrollbar.propTypes = {
   sx: PropTypes.object,
@@ -14,7 +10,6 @@ Scrollbar.propTypes = {
 
 function Scrollbar({ children, sx, ...other }) {
   const userAgent = typeof navigator === 'undefined' ? 'SSR' : navigator.userAgent;
-
   const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent);
 
   if (isMobile) {
