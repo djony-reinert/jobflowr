@@ -1,6 +1,9 @@
 # Base image
 FROM node:18.13.0-alpine
 
+# Install yarn
+RUN apk add --no-cache yarn
+
 # Set the working directory to /app
 WORKDIR /app
 
