@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import { useState } from "react";
 
 const useFetchData = () => {
   const [connData, setConnData] = useState(null);
@@ -13,19 +13,19 @@ const useFetchData = () => {
     fetch(`http://localhost:3000/api/${endpoint}`, {
       method,
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
-      signal: abortController.signal
+      signal: abortController.signal,
     })
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         setConnData(data);
         setConnLoading(false);
         if (onSuccess) onSuccess(data);
       })
-      .catch(error => {
-        if (error.name !== 'AbortError') {
+      .catch((error) => {
+        if (error.name !== "AbortError") {
           setConnError(error);
           setConnLoading(false);
           if (onError) onError(error);
