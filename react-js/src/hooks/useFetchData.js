@@ -19,10 +19,10 @@ const useFetchData = () => {
       signal: abortController.signal,
     })
       .then((response) => response.json())
-      .then((data) => {
-        setConnData(data);
+      .then((response) => {
+        setConnData(response);
         setConnLoading(false);
-        if (onSuccess) onSuccess(data);
+        if (onSuccess) onSuccess(response);
       })
       .catch((error) => {
         if (error.name !== "AbortError") {
