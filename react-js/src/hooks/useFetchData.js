@@ -1,14 +1,23 @@
-import { useState, useEffect } from 'react';
+import {useState} from 'react';
 
-const useFetchData = ({ endpoint, onSuccess, onError}) => {
+const useFetchData = () => {
   const [connData, setConnData] = useState(null);
   const [connError, setConnError] = useState(null);
   const [connLoading, setConnLoading] = useState(false);
 
-  useEffect(() => {
+  const doFetch = ({ endpoint, method, data, onSuccess, onError }) => {
     setConnLoading(true);
 
-    fetch(`http://localhost:3000/api/${endpoint}`)
+    const abortController = new AbortController();
+
+    fetch(`http://localhost:3000/api/${endpoint}`, {
+      method,
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data),
+      signal: abortController.signal
+    })
       .then(response => response.json())
       .then(data => {
         setConnData(data);
@@ -16,13 +25,19 @@ const useFetchData = ({ endpoint, onSuccess, onError}) => {
         if (onSuccess) onSuccess(data);
       })
       .catch(error => {
-        setConnError(error);
-        setConnLoading(false);
-        if (onError) onError(error);
+        if (error.name !== 'AbortError') {
+          setConnError(error);
+          setConnLoading(false);
+          if (onError) onError(error);
+        }
       });
-  }, [endpoint, onSuccess, onError]);
 
-  return { connData, connError, connLoading };
+    return () => {
+      abortController.abort();
+    };
+  };
+
+  return { connData, connError, connLoading, doFetch };
 };
 
 export default useFetchData;
