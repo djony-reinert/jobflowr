@@ -1,8 +1,5 @@
 import merge from 'lodash/merge';
-// @mui
 import { useTheme, alpha } from '@mui/material/styles';
-
-// ----------------------------------------------------------------------
 
 export default function useChart(options) {
   const theme = useTheme();

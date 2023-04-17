@@ -1,12 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { NavLink as RouterLink } from 'react-router-dom';
-// @mui
 import { Box, List, ListItemText } from '@mui/material';
-//
 import { StyledNavItem, StyledNavItemIcon } from './styles';
-
-// ----------------------------------------------------------------------
 
 NavSection.propTypes = {
   data: PropTypes.array,
@@ -23,8 +19,6 @@ export default function NavSection({ data = [], ...other }) {
     </Box>
   );
 }
-
-// ----------------------------------------------------------------------
 
 NavItem.propTypes = {
   item: PropTypes.object,

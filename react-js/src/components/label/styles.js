@@ -1,16 +1,10 @@
-// @mui
 import { alpha, styled } from '@mui/material/styles';
 import { Box } from '@mui/material';
 
-// ----------------------------------------------------------------------
-
 export const StyledLabel = styled(Box)(({ theme, ownerState }) => {
   const isLight = theme.palette.mode === 'light';
-
   const filledVariant = ownerState.variant === 'filled';
-
   const outlinedVariant = ownerState.variant === 'outlined';
-
   const softVariant = ownerState.variant === 'soft';
 
   const defaultStyle = {

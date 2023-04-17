@@ -1,12 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ReactApexChart from 'react-apexcharts';
-// @mui
 import { Card, CardHeader, Box } from '@mui/material';
-// components
 import { useChart } from '../../../components/chart';
-
-// ----------------------------------------------------------------------
 
 AppWebsiteVisits.propTypes = {
   title: PropTypes.string,
@@ -40,7 +36,7 @@ export default function AppWebsiteVisits({ title, subheader, chartLabels, chartD
       <CardHeader title={title} subheader={subheader} />
 
       <Box sx={{ p: 3, pb: 1 }} dir="ltr">
-        <ReactApexChart type="line" series={chartData} options={chartOptions} height={364} />
+        <ReactApexChart type="line" series={chartData} options={chartOptions} height={372} />
       </Box>
     </Card>
   );
