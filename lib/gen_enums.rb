@@ -1,8 +1,10 @@
 # frozen_string_literal: true
+require 'active_support/all'
+require 'active_hash'
 
 # Set the input and output directories
 input_folder = File.join(__dir__, '../app/enumerations')
-output_folder = File.join(__dir__, '../react/src/enums')
+output_folder = File.join(__dir__, '../react-js/src/enums')
 
 # Loop through all .rb files in the input folder
 Dir.glob(File.join(input_folder, '*.rb')).sort.each do |file_path|
