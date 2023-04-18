@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
-import React, {useEffect} from 'react';
-import {useLocation} from 'react-router-dom';
-import {alpha, styled} from '@mui/material/styles';
-import {Avatar, Box, Drawer, Link, Typography} from '@mui/material';
+import React, { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+import { alpha, styled } from '@mui/material/styles';
+import { Avatar, Box, Drawer, Link, Typography } from '@mui/material';
 import account from '../../../_mock/account';
 import useResponsive from '../../../hooks/useResponsive';
 import Logo from '../../../components/logo';
