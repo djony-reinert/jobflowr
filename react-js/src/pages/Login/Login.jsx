@@ -1,11 +1,11 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { styled } from '@mui/material/styles';
-import { Link, Container, Typography, Divider, Stack, Button } from '@mui/material';
+import { Link, Container, Typography, Divider, Stack, Button, Box } from '@mui/material';
 import useResponsive from '../../hooks/useResponsive';
-import Logo from '../../components/logo';
 import Iconify from '../../components/iconify';
 import LoginForm from "./components/LoginForm";
+import Logo from "../../components/Logo/Logo";
 
 const StyledRoot = styled('div')(({ theme }) => ({
   [theme.breakpoints.up('md')]: {
@@ -43,17 +43,13 @@ export default function Login() {
       </Helmet>
 
       <StyledRoot>
-        <Logo
-          sx={{
-            position: 'fixed',
-            top: { xs: 16, sm: 24, md: 40 },
-            left: { xs: 16, sm: 24, md: 40 },
-          }}
-        />
-
         {mdUp && (
           <StyledSection>
-            <Typography variant="h3" sx={{ px: 5, mt: 10, mb: 5 }}>
+            <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+              <Logo />
+            </Box>
+
+            <Typography variant="h3" sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', px: 5, mt: 10, mb: 5 }}>
               Hi, Welcome Back
             </Typography>
             <img src="/assets/illustrations/illustration_login.png" alt="login" />
@@ -63,7 +59,7 @@ export default function Login() {
         <Container maxWidth="sm">
           <StyledContent>
             <Typography variant="h4" gutterBottom>
-              Sign in to JobFlowr
+              Sign in to <span style={{ color: 'rgb(12, 95, 133)' }}>JobFlowr</span>
             </Typography>
 
             <Typography variant="body2" sx={{ mb: 5 }}>
