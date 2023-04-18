@@ -25,27 +25,29 @@ const CustomTable = ({ columns, data }) => {
   });
 
   return (
-    <TableContainer component={Paper} style={{maxWidth: '1000px'}}>
-      <Table {...getTableProps()}>
-        <CustomTableHeader
-          columns={columns}
-          order={order}
-          orderBy={orderBy}
-          onRequestSort={handleRequestSort}
-          headerGroups={headerGroups}
+    <>
+      <TableContainer component={Paper} sx={{ minWidth: 800 }}>
+        <Table {...getTableProps()}>
+          <CustomTableHeader
+            columns={columns}
+            order={order}
+            orderBy={orderBy}
+            onRequestSort={handleRequestSort}
+            headerGroups={headerGroups}
+          />
+          <CustomTableBody rows={rows} columns={columns} page={page} rowsPerPage={rowsPerPage} prepareRow={prepareRow} />
+        </Table>
+        <TablePagination
+          rowsPerPageOptions={[5, 10, 25]}
+          component="div"
+          count={data?.length || 0}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onPageChange={handleChangePage}
+          onRowsPerPageChange={handleChangeRowsPerPage}
         />
-        <CustomTableBody rows={rows} columns={columns} page={page} rowsPerPage={rowsPerPage} prepareRow={prepareRow} />
-      </Table>
-      <TablePagination
-        rowsPerPageOptions={[5, 10, 25]}
-        component="div"
-        count={data?.length || 0}
-        rowsPerPage={rowsPerPage}
-        page={page}
-        onPageChange={handleChangePage}
-        onRowsPerPageChange={handleChangeRowsPerPage}
-      />
-    </TableContainer>
+      </TableContainer>
+    </>
   );
 };
 
