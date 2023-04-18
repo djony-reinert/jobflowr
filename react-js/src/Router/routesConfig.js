@@ -1,11 +1,12 @@
 import React from 'react';
-import { Navigate, useRoutes } from 'react-router-dom';
+import {Navigate, useRoutes} from 'react-router-dom';
 import DashboardLayout from '../layouts/dashboard';
 import SimpleLayout from '../layouts/simple';
-import UserPage from '../pages/UserPage';
 import LoginPage from '../pages/LoginPage';
 import Page404 from '../pages/Page404';
 import DashboardAppPage from '../pages/DashboardAppPage';
+import ListJobs from "../pages/Jobs/List/ListJobs";
+import {ROUTE_JOBS} from "./routes";
 
 const RoutesConfig = () => {
   const routes = useRoutes([
@@ -15,7 +16,7 @@ const RoutesConfig = () => {
       children: [
         { element: <Navigate to="/dashboard" />, index: true },
         { path: 'dashboard', element: <DashboardAppPage /> },
-        { path: 'user', element: <UserPage /> },
+        { path: ROUTE_JOBS(), element: <ListJobs /> },
       ],
     },
     {

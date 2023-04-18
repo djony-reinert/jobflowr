@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import CustomTable from "../../../../../components/Display/Table/CustomTable";
-import DeleteIcon from '@mui/icons-material/Delete';
-import EditIcon from '@mui/icons-material/Edit';
+import ActionMenu from "../../../../../components/Display/Table/components/ActionMenu";
 
 const ListJobsTable = ({ data }) => {
   const columns = [
@@ -42,17 +41,8 @@ const ListJobsTable = ({ data }) => {
     {
       Header: "Actions",
       accessor: "actions",
-      Cell: () => {
-        return (
-          <>
-            <span onClick={() => alert('edit')}>
-              <EditIcon className="action mr-2" />
-            </span>
-            <span onClick={() => alert('delete')}>
-              <DeleteIcon className="action" />
-            </span>
-          </>
-        );
+      Cell: ({ row }) => {
+        return <ActionMenu />;
       },
       disableSortBy: true,
       width: '1%',
