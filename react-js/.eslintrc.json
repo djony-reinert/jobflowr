@@ -24,7 +24,7 @@
     "plugin:react-hooks/recommended",
     "prettier"
   ],
-  "plugins": ["prettier", "react", "react-hooks"],
+  "plugins": ["prettier", "react", "react-hooks", "import"],
   "rules": {
     "prettier/prettier": "off",
     "react/prop-types": "off",
@@ -34,6 +34,8 @@
     "no-shadow": "warn",
     "react/jsx-key": "warn",
     "react/display-name": "off",
-    "react/react-in-jsx-scope": "warn"
+    "react/react-in-jsx-scope": "warn",
+    "object-curly-spacing": ["error", "always"]
+//    "object-curly-spacing": ["off","always", { "arraysInObjects": false, "objectsInObjects": true }],
   }
 }
