@@ -1,7 +1,7 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
-import Logo from '../../components/logo';
+import Logo from "../../components/Logo/Logo";
 
 const StyledHeader = styled('header')(({ theme }) => ({
   top: 0,

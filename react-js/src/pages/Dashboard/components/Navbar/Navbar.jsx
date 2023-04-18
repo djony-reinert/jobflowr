@@ -5,10 +5,10 @@ import { alpha, styled } from '@mui/material/styles';
 import { Avatar, Box, Drawer, Link, Typography } from '@mui/material';
 import account from '../../../../_mock/account';
 import useResponsive from '../../../../hooks/useResponsive';
-import Logo from '../../../../components/logo';
 import Scrollbar from '../../../../components/scrollbar';
 import NavSection from '../../../../components/nav-section';
 import navbarConfig from './navbarConfig';
+import Logo from "../../../../components/Logo/Logo";
 
 const NAV_WIDTH = 280;
 
