@@ -6,7 +6,8 @@ import Login from '../pages/Login/Login';
 import Page404 from '../pages/Page404';
 import Dashboard from '../pages/Dashboard/Dashboard';
 import ListJobs from "../pages/Jobs/List/ListJobs";
-import { ROUTE_JOBS } from "./routes";
+import ListCandidates from "../pages/Candidates/List/ListCandidates";
+import { ROUTE_JOBS, ROUTE_CANDIDATES } from "./routes";
 
 const RoutesConfig = () => {
   const routes = useRoutes([
@@ -17,6 +18,7 @@ const RoutesConfig = () => {
         { element: <Navigate to="/dashboard" />, index: true },
         { path: 'dashboard', element: <Dashboard /> },
         { path: ROUTE_JOBS(), element: <ListJobs /> },
+        { path: ROUTE_CANDIDATES(), element: <ListCandidates /> }
       ],
     },
     {
