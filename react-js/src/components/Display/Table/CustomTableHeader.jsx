@@ -1,4 +1,4 @@
-import React, {useMemo} from "react";
+import React, { useMemo } from "react";
 import { TableHead, TableRow, TableCell, TableSortLabel } from "@mui/material";
 
 const CustomTableHeader = ({ onRequestSort, order, orderBy, headerGroups }) => {

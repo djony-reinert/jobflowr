@@ -1,10 +1,10 @@
 import React from 'react';
-import {Paper, Table, TableContainer, TablePagination} from '@mui/material';
+import { Paper, Table, TableContainer, TablePagination } from '@mui/material';
 import CustomTableHeader from "./CustomTableHeader";
 import CustomTableBody from "./CustomTableBody";
 import PropTypes from 'prop-types';
-import {useTable} from "react-table";
-import {useTableUtils} from "../../../hooks/useTableUtils";
+import { useTable } from "react-table";
+import { useTableUtils } from "../../../hooks/useTableUtils";
 
 const CustomTable = ({ columns, data }) => {
   const {
