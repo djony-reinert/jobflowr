@@ -11,8 +11,12 @@ const ListJobs = () => {
   const { connData, connLoading, doFetch } = useFetchData();
   const navigate = useNavigate();
 
+  const doRefresh = useCallback(() => {
+    doFetch(API_JOBS());
+  }, []);
+
   useEffect(() => {
-    doFetch({ ...API_JOBS() });
+    doRefresh();
   }, []);
 
   const redirectToAddJob = useCallback(() => {
@@ -37,7 +41,7 @@ const ListJobs = () => {
           </Button>
         </Box>
         <Box>
-          <ListJobsTable data={connData}/>
+          <ListJobsTable data={connData} doRefresh={doRefresh}/>
         </Box>
       </Box>
     </>

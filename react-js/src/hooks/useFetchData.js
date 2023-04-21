@@ -1,19 +1,18 @@
 import { useState } from "react";
 
-const useFetchData = () => {
+const useFetchData = ({ startConnLoading = true } = {}) => {
   const [connData, setConnData] = useState(null);
   const [connError, setConnError] = useState(null);
-  const [connLoading, setConnLoading] = useState(true);
+  const [connLoading, setConnLoading] = useState(startConnLoading);
 
-  const doFetch = ({ endpoint, method, data, onSuccess, onError }) => {
+  const doFetch = (endpoint, onSuccess, onError) => {
     const abortController = new AbortController();
 
     fetch(`http://localhost:3000/api${endpoint}`, {
-      method,
+      method: 'GET',
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(data),
       signal: abortController.signal,
     })
       .then((response) => response.json())
@@ -37,7 +36,7 @@ const useFetchData = () => {
     };
   };
 
-  return { connData, connError, connLoading, doFetch };
+  return { connData, connError, connLoading, doFetch, setConnLoading };
 };
 
 export default useFetchData;
