@@ -1,5 +1,5 @@
 import React from 'react';
-import { Paper, Table, TableContainer, TablePagination } from '@mui/material';
+import { Box, Paper, Table, TableContainer, TablePagination } from '@mui/material';
 import CustomTableHeader from "./CustomTableHeader";
 import CustomTableBody from "./CustomTableBody";
 import PropTypes from 'prop-types';
@@ -25,7 +25,7 @@ const CustomTable = ({ columns, data }) => {
   });
 
   return (
-    <>
+    <Box sx={{ px: 2, py: 4 }}>
       <TableContainer component={Paper} sx={{ minWidth: 800 }}>
         <Table {...getTableProps()}>
           <CustomTableHeader
@@ -47,7 +47,7 @@ const CustomTable = ({ columns, data }) => {
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
       </TableContainer>
-    </>
+    </Box>
   );
 };
 

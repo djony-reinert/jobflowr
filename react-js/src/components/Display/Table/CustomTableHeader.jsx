@@ -10,8 +10,8 @@ const CustomTableHeader = ({ onRequestSort, order, orderBy, headerGroups }) => {
 
   return (
     <TableHead>
-      {memoizedHeaderGroups.map((headerGroup) => (
-        <TableRow {...headerGroup.getHeaderGroupProps()}>
+      {memoizedHeaderGroups.map((headerGroup, index) => (
+        <TableRow key={`group-${index}`} {...headerGroup.getHeaderGroupProps()}>
           {headerGroup.headers.map((column) => {
             return (
               <TableCell
