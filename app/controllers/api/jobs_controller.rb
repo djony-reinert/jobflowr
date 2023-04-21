@@ -22,8 +22,9 @@ module Api
     end
 
     def create
-      sql = 'INSERT INTO jobs (title, description, created_at, updated_at) VALUES ($1, $2, $3, $4) RETURNING *'
-      values = [job_params[:title], job_params[:description], Time.now, Time.now]
+      sql = 'INSERT INTO jobs (id, title, description, status_id, remote_type_id, created_at, updated_at) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *'
+      id = SecureRandom.alphanumeric(22)
+      values = [id, job_params[:title], job_params[:description], JobStatus[:draft].id, job_params[:remote_type_id], Time.now, Time.now]
       result = exec_query(sql: sql, values: values)
 
       if result.present?
@@ -34,8 +35,8 @@ module Api
     end
 
     def update
-      sql = 'UPDATE jobs SET title = $1, description = $2, updated_at = $3 WHERE id = $4 RETURNING *'
-      values = [job_params[:title], job_params[:description], Time.now, params[:id]]
+      sql = 'UPDATE jobs SET title = $1, description = $2, status_id = $3, remote_type_id = $4, updated_at = $5 WHERE id = $6 RETURNING *'
+      values = [job_params[:title], job_params[:description], JobStatus[:published].id, job_params[:remote_type_id], Time.now, params[:id]]
       result = exec_query(sql: sql, values: values)
 
       if result.present?
@@ -60,7 +61,7 @@ module Api
     private
 
     def job_params
-      params.permit(:title)
+      params.permit(:title, :description, :remote_type_id)
     end
   end
 end

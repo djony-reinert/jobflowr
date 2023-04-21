@@ -45,4 +45,8 @@ class JobStatus < ActiveHash::Base
       description: 'The job has been closed and is no longer visible to job seekers, but is still kept for record-keeping purposes' # rubocop:disable Layout/LineLength
     }
   ]
+
+  def self.[](name)
+    self.find_by(name: name)
+  end
 end

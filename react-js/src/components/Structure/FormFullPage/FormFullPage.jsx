@@ -1,22 +1,25 @@
 import React from 'react';
-import { Formik } from 'formik';
+import { Formik, Form } from 'formik';
 import { Box, Button, Typography } from '@mui/material';
+import { LoadingButton } from "@mui/lab";
 
-const FormFullPageLayout = ({ title, actionButtonTitle, children, onCancel }) => {
+const FormFullPageLayout = ({ title, actionButtonTitle, children, onCancel, isSubmitting }) => {
   return (
     <Box sx={{ px: 2 }}>
       <Typography variant="h4">
         {title}
       </Typography>
-      <Box sx={{ py: 2 }}>
-        {children}
-      </Box>
-      <FormFullPageFooter actionButtonTitle={actionButtonTitle} onCancel={onCancel} />
+      <Form>
+        <Box sx={{ py: 2 }}>
+          {children}
+        </Box>
+        <FormFullPageFooter actionButtonTitle={actionButtonTitle} onCancel={onCancel} isSubmitting={isSubmitting} />
+      </Form>
     </Box>
   );
 }
 
-const FormFullPageFooter = ({ actionButtonTitle, onCancel }) => {
+const FormFullPageFooter = ({ actionButtonTitle, onCancel, isSubmitting }) => {
   return (
     <Box sx={{
       px: 4,
@@ -31,19 +34,26 @@ const FormFullPageFooter = ({ actionButtonTitle, onCancel }) => {
       justifyContent: 'flex-end',
     }}>
       <Button variant="outlined" size="large" sx={{ mr: 2 }} onClick={onCancel}>Cancel</Button>
-      <Button variant="contained" color="primary" size="large" >{actionButtonTitle}</Button>
+      <LoadingButton
+        loading={isSubmitting}
+        type="submit"
+        variant="contained"
+        color="primary"
+        size="large"
+      >
+        {actionButtonTitle}
+      </LoadingButton>
     </Box>
   );
 }
-const FormFullPage = ({ title, actionButtonTitle, initialValues, validationSchema, onSubmit, onCancel, children }) => {
+const FormFullPage = ({ title, actionButtonTitle, initialValues, onSubmit, onCancel, children }) => {
   return (
     <Formik
       initialValues={initialValues}
-      validationSchema={validationSchema}
       onSubmit={onSubmit}
     >
-      {() => (
-        <FormFullPageLayout title={title} actionButtonTitle={actionButtonTitle} onCancel={onCancel}>
+      {({ isSubmitting }) => (
+        <FormFullPageLayout title={title} actionButtonTitle={actionButtonTitle} onCancel={onCancel} isSubmitting={isSubmitting}>
           {children}
         </FormFullPageLayout>
       )}
