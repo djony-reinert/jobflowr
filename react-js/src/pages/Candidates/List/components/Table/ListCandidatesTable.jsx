@@ -57,7 +57,7 @@ const ListCandidatesTable = ({ data }) => {
     {
       Header: "Actions",
       accessor: "actions",
-      Cell: ({ row }) => {
+      Cell: () => {
         return <ActionMenu />;
       },
       disableSortBy: true,

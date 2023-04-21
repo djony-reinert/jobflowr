@@ -7,7 +7,8 @@ import Page404 from '../pages/Page404';
 import Dashboard from '../pages/Dashboard/Dashboard';
 import ListJobs from "../pages/Jobs/List/ListJobs";
 import ListCandidates from "../pages/Candidates/List/ListCandidates";
-import { ROUTE_JOBS, ROUTE_CANDIDATES } from "./routes";
+import { ROUTE_JOBS, ROUTE_CANDIDATES, ROUTE_JOBS_NEW, ROUTE_JOBS_EDIT } from "./routes";
+import EditJob from "../pages/Jobs/Edit/EditJob";
 
 const RoutesConfig = () => {
   const routes = useRoutes([
@@ -18,6 +19,8 @@ const RoutesConfig = () => {
         { element: <Navigate to="/dashboard" />, index: true },
         { path: 'dashboard', element: <Dashboard /> },
         { path: ROUTE_JOBS(), element: <ListJobs /> },
+        { path: ROUTE_JOBS_NEW(), element: <EditJob /> },
+        { path: ROUTE_JOBS_EDIT(), element: <EditJob /> },
         { path: ROUTE_CANDIDATES(), element: <ListCandidates /> }
       ],
     },

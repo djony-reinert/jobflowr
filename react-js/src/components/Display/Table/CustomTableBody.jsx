@@ -1,4 +1,4 @@
-import {TableBody, TableRow, TableCell} from "@mui/material";
+import { TableBody, TableRow, TableCell } from "@mui/material";
 import React from "react";
 
 const CustomTableBody = ({ rows, prepareRow }) => {

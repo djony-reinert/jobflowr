@@ -1,8 +1,8 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import ListCandidatesTable from "./components/Table/ListCandidatesTable";
 import useFetchData from "../../../hooks/useFetchData";
-import {API_CANDIDATES} from "../../../endpoints";
-import {Helmet} from "react-helmet-async";
+import { API_CANDIDATES } from "../../../endpoints";
+import { Helmet } from "react-helmet-async";
 
 const ListCandidates = () => {
   const { connData, connLoading, doFetch } = useFetchData();
