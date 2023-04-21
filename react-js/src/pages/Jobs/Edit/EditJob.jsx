@@ -1,17 +1,45 @@
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { Form } from 'formik';
 import { FormControl, Grid } from '@mui/material';
 import FormFullPage from "../../../components/Structure/FormFullPage/FormFullPage";
 import { useParams } from 'react-router-dom';
 import FormikFieldText from "../../../components/Input/FormikFieldText";
-import FormikFieldSelect from "../../../components/Input/FormikFieldSelect";
+import useFetchData from "../../../hooks/useFetchData";
+import { API_JOBS_EDIT } from "../../../endpoints";
+import RemoteTypeSelect from "./components/RemoteTypeSelect";
+import useDepartmentData from "../../../hooks/appData/useDepartmentData";
+import DepartmentSelect from "./components/DepartmentSelect";
+import SalaryIntervalSelect from "./components/SalaryIntervalSelect";
 
 const EditJob = () => {
+  const { connData, connLoading, doFetch } = useFetchData();
+  const { connData: departmentConnData, connLoading: departmentConnLoading } = useDepartmentData();
   const { id } = useParams();
 
+  useEffect(() => {
+    doFetch({ ...API_JOBS_EDIT({ id }) });
+  }, [id])
+
   const initialValues = useMemo(() => {
-    return {}
-  }, [id]);
+    if (!connData) {
+      return {}
+    }
+
+    return {
+      title: connData?.title,
+      description: connData?.description,
+      location: connData?.location,
+      company: connData?.company,
+      department_id: connData?.department_id,
+      remote_type_id: connData?.remote_type_id,
+      salary_interval: connData?.salary_interval,
+      salary_minimum: connData?.salary_minimum,
+      salary_maximum: connData?.salary_maximum,
+    }
+  }, [connData]);
+
+
+  if (connLoading || departmentConnLoading) return;
 
   return (
     <FormFullPage
@@ -36,10 +64,10 @@ const EditJob = () => {
         <FormControl fullWidth>
           <Grid container spacing={4}>
             <Grid item xs={6}>
-              <FormikFieldSelect name='department_id' label='Department' options={[]} />
+              <DepartmentSelect name='department_id' label='Department' departments={departmentConnData} />
             </Grid>
             <Grid item xs={6}>
-              <FormikFieldSelect name='remote_type_id' label='Remote Work' options={[]} />
+              <RemoteTypeSelect name='remote_type_id' label='Remote Work' />
             </Grid>
           </Grid>
         </FormControl>
@@ -47,7 +75,7 @@ const EditJob = () => {
         <FormControl fullWidth>
           <Grid container spacing={4}>
             <Grid item xs={6}>
-              <FormikFieldSelect name='salary_interval' label='Salary Interval' options={[]} />
+              <SalaryIntervalSelect name='salary_interval' label='Salary Interval' />
             </Grid>
             <Grid item xs={6}>
               <Grid container spacing={4}>
