@@ -1,9 +1,21 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import CustomTable from "../../../../../components/Display/Table/CustomTable";
 import ActionMenu from "../../../../../components/Display/Table/components/ActionMenu";
+import { useNavigate } from 'react-router-dom';
+import { ROUTE_JOBS_EDIT } from "../../../../../Router/routes";
 
 const ListJobsTable = ({ data }) => {
+  const navigate = useNavigate();
+
+  const handleDelete = useCallback((id) => {
+    console.log('Delete', id);
+  }, []);
+
+  const redirectToEditJob = useCallback((id) => {
+    navigate(ROUTE_JOBS_EDIT({ id }));
+  }, []);
+
   const columns = [
     {
       Header: 'Id',
@@ -41,8 +53,8 @@ const ListJobsTable = ({ data }) => {
     {
       Header: "Actions",
       accessor: "actions",
-      Cell: () => {
-        return <ActionMenu />;
+      Cell: ({ row }) => {
+        return <ActionMenu id={row.original?.id} handleDelete={handleDelete} handleEdit={redirectToEditJob} />;
       },
       disableSortBy: true,
       width: '1%',

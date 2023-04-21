@@ -20,7 +20,7 @@ const RoutesConfig = () => {
         { path: 'dashboard', element: <Dashboard /> },
         { path: ROUTE_JOBS(), element: <ListJobs /> },
         { path: ROUTE_JOBS_NEW(), element: <EditJob /> },
-        { path: ROUTE_JOBS_EDIT(), element: <EditJob /> },
+        { path: ROUTE_JOBS_EDIT({ id: ':id' }), element: <EditJob /> },
         { path: ROUTE_CANDIDATES(), element: <ListCandidates /> }
       ],
     },

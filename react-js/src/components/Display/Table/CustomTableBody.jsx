@@ -7,9 +7,10 @@ const CustomTableBody = ({ rows, prepareRow }) => {
       {rows.map((row) => {
         prepareRow(row);
         return (
-          <TableRow {...row.getRowProps()}>
+          <TableRow key={row.original?.id} {...row.getRowProps()}>
             {row.cells.map((cell) => (
               <TableCell
+                key={`${cell.column.id}-${cell.row.id}`}
                 {...cell.getCellProps()}
                 style={{ textAlign: cell.column.numeric ? 'right' : 'left' }}
               >

@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useEffect, useMemo, useCallback } from 'react';
 import { Form } from 'formik';
 import { FormControl, Grid } from '@mui/material';
 import FormFullPage from "../../../components/Structure/FormFullPage/FormFullPage";
@@ -10,11 +10,14 @@ import RemoteTypeSelect from "./components/RemoteTypeSelect";
 import useDepartmentData from "../../../hooks/appData/useDepartmentData";
 import DepartmentSelect from "./components/DepartmentSelect";
 import SalaryIntervalSelect from "./components/SalaryIntervalSelect";
+import { useNavigate } from "react-router-dom";
+import { ROUTE_JOBS } from "../../../Router/routes";
 
 const EditJob = () => {
   const { connData, connLoading, doFetch } = useFetchData();
   const { connData: departmentConnData, connLoading: departmentConnLoading } = useDepartmentData();
   const { id } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     doFetch({ ...API_JOBS_EDIT({ id }) });
@@ -38,6 +41,9 @@ const EditJob = () => {
     }
   }, [connData]);
 
+  const redirectBack = useCallback(() => {
+    navigate(ROUTE_JOBS());
+  }, []);
 
   if (connLoading || departmentConnLoading) return;
 
@@ -45,7 +51,7 @@ const EditJob = () => {
     <FormFullPage
       initialValues={initialValues}
       onSubmit={() => {}}
-      onCancel={() => {}}
+      onCancel={redirectBack}
       title={id ? 'Edit Job' : 'New Job'}
       actionButtonTitle={id ? 'Update' : 'Add'}
     >

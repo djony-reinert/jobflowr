@@ -5,10 +5,10 @@ import { Box, Button, Typography } from '@mui/material';
 const FormFullPageLayout = ({ title, actionButtonTitle, children, onCancel }) => {
   return (
     <Box sx={{ px: 2 }}>
-      <Typography variant="h4" gutterBottom>
+      <Typography variant="h4">
         {title}
       </Typography>
-      <Box>
+      <Box sx={{ py: 2 }}>
         {children}
       </Box>
       <FormFullPageFooter actionButtonTitle={actionButtonTitle} onCancel={onCancel} />
