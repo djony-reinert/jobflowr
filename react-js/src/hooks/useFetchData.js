@@ -3,14 +3,12 @@ import { useState } from "react";
 const useFetchData = () => {
   const [connData, setConnData] = useState(null);
   const [connError, setConnError] = useState(null);
-  const [connLoading, setConnLoading] = useState(false);
+  const [connLoading, setConnLoading] = useState(true);
 
   const doFetch = ({ endpoint, method, data, onSuccess, onError }) => {
-    setConnLoading(true);
-
     const abortController = new AbortController();
 
-    fetch(`http://localhost:3000/api/${endpoint}`, {
+    fetch(`http://localhost:3000/api${endpoint}`, {
       method,
       headers: {
         "Content-Type": "application/json",
@@ -22,12 +20,14 @@ const useFetchData = () => {
       .then((response) => {
         setConnData(response);
         setConnLoading(false);
+
         if (onSuccess) onSuccess(response);
       })
       .catch((error) => {
         if (error.name !== "AbortError") {
           setConnError(error);
           setConnLoading(false);
+
           if (onError) onError(error);
         }
       });
