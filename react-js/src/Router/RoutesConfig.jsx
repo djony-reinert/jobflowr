@@ -7,8 +7,18 @@ import Page404 from '../pages/Page404';
 import Dashboard from '../pages/Dashboard/Dashboard';
 import ListJobs from "../pages/Jobs/List/ListJobs";
 import ListCandidates from "../pages/Candidates/List/ListCandidates";
-import { ROUTE_JOBS, ROUTE_CANDIDATES, ROUTE_JOBS_NEW, ROUTE_JOBS_EDIT } from "./routes";
+import {
+  ROUTE_JOBS,
+  ROUTE_CANDIDATES,
+  ROUTE_JOBS_NEW,
+  ROUTE_JOBS_EDIT,
+  ROUTE_USERS,
+  ROUTE_USERS_NEW,
+  ROUTE_USERS_EDIT
+} from "./routes";
 import EditJob from "../pages/Jobs/Edit/EditJob";
+import EditUser from "../pages/Users/Edit/EditUser";
+import ListUsers from "../pages/Users/List/ListUsers";
 
 const RoutesConfig = () => {
   const routes = useRoutes([
@@ -21,6 +31,9 @@ const RoutesConfig = () => {
         { path: ROUTE_JOBS(), element: <ListJobs /> },
         { path: ROUTE_JOBS_NEW(), element: <EditJob /> },
         { path: ROUTE_JOBS_EDIT({ id: ':id' }), element: <EditJob /> },
+        { path: ROUTE_USERS(), element: <ListUsers /> },
+        { path: ROUTE_USERS_NEW(), element: <EditUser /> },
+        { path: ROUTE_USERS_EDIT({ id: ':id' }), element: <EditUser /> },
         { path: ROUTE_CANDIDATES(), element: <ListCandidates /> }
       ],
     },
