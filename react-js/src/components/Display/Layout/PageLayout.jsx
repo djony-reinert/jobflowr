@@ -29,7 +29,7 @@ const PageLayout = ({ title, actions, children }) => {
           </Box>
         )}
       </Box>
-      <Box sx={{ p: 2 }}>
+      <Box sx={{ px: 2, mt: 4 }}>
         {children}
       </Box>
     </Box>
