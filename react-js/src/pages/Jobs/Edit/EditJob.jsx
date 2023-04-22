@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo } from 'react';
-import { FormControl, Grid } from '@mui/material';
+import { Box, FormControl, Grid } from '@mui/material';
 import FormFullPage from "../../../components/Structure/FormFullPage/FormFullPage";
 import { useNavigate, useParams } from 'react-router-dom';
 import FormikFieldText from "../../../components/Input/FormikFieldText";
@@ -83,46 +83,48 @@ const EditJob = () => {
       title={id ? 'Edit Job' : 'New Job'}
       actionButtonTitle={id ? 'Update' : 'Add'}
     >
-      <FormControl fullWidth>
-        <Grid container spacing={4}>
-          <Grid item xs={6}>
-            <FormikFieldText name='title' label="Title" fullWidth margin="normal" />
+      <Box sx={{ marginTop: -2 }}>
+        <FormControl fullWidth>
+          <Grid container spacing={4}>
+            <Grid item xs={6}>
+              <FormikFieldText name='title' label="Title" fullWidth margin="normal" />
+            </Grid>
+            <Grid item xs={6}>
+              <FormikFieldText label="Location" name='location' fullWidth margin="normal"/>
+            </Grid>
           </Grid>
-          <Grid item xs={6}>
-            <FormikFieldText label="Location" name='location' fullWidth margin="normal"/>
-          </Grid>
-        </Grid>
-      </FormControl>
+        </FormControl>
 
-      <FormControl fullWidth>
-        <Grid container spacing={4}>
-          <Grid item xs={6}>
-            <DepartmentSelect name='department_id' label='Department' departments={departmentConnData} />
+        <FormControl fullWidth>
+          <Grid container spacing={4}>
+            <Grid item xs={6}>
+              <DepartmentSelect name='department_id' label='Department' departments={departmentConnData} />
+            </Grid>
+            <Grid item xs={6}>
+              <RemoteTypeSelect name='remote_type_id' label='Remote Work' />
+            </Grid>
           </Grid>
-          <Grid item xs={6}>
-            <RemoteTypeSelect name='remote_type_id' label='Remote Work' />
-          </Grid>
-        </Grid>
-      </FormControl>
+        </FormControl>
 
-      <FormControl fullWidth>
-        <Grid container spacing={4}>
-          <Grid item xs={6}>
-            <SalaryIntervalSelect name='salary_interval' label='Salary Interval' />
-          </Grid>
-          <Grid item xs={6}>
-            <Grid container spacing={4}>
-              <Grid item xs={6}>
-                <FormikFieldText name='salary_minimum' label="Salary Minimum" fullWidth margin="normal" />
-              </Grid>
-              <Grid item xs={6}>
-                <FormikFieldText name='salary_maximum' label="Salary Maximum" fullWidth margin="normal" />
+        <FormControl fullWidth>
+          <Grid container spacing={4}>
+            <Grid item xs={6}>
+              <SalaryIntervalSelect name='salary_interval' label='Salary Interval' />
+            </Grid>
+            <Grid item xs={6}>
+              <Grid container spacing={4}>
+                <Grid item xs={6}>
+                  <FormikFieldText name='salary_minimum' label="Salary Minimum" fullWidth margin="normal" />
+                </Grid>
+                <Grid item xs={6}>
+                  <FormikFieldText name='salary_maximum' label="Salary Maximum" fullWidth margin="normal" />
+                </Grid>
               </Grid>
             </Grid>
           </Grid>
-        </Grid>
-      </FormControl>
-      <FormikFieldText name='description' label="Description" fullWidth multiline rows={14} margin="normal" />
+        </FormControl>
+        <FormikFieldText name='description' label="Description" fullWidth multiline rows={14} margin="normal" />
+      </Box>
     </FormFullPage>
   );
 };

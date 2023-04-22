@@ -1,21 +1,19 @@
 import React from 'react';
-import { Formik, Form } from 'formik';
-import { Box, Button, Typography } from '@mui/material';
+import { Form, Formik } from 'formik';
+import { Box, Button } from '@mui/material';
 import { LoadingButton } from "@mui/lab";
+import PageLayout from "../../Display/Layout/PageLayout";
 
 const FormFullPageLayout = ({ title, actionButtonTitle, children, onCancel, isSubmitting }) => {
   return (
-    <Box sx={{ px: 2 }}>
-      <Typography variant="h4">
-        {title}
-      </Typography>
+    <PageLayout title={title}>
       <Form>
-        <Box sx={{ py: 2 }}>
+        <Box>
           {children}
         </Box>
         <FormFullPageFooter actionButtonTitle={actionButtonTitle} onCancel={onCancel} isSubmitting={isSubmitting} />
       </Form>
-    </Box>
+    </PageLayout>
   );
 }
 
