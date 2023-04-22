@@ -1,9 +1,18 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import CustomTable from "../../../../../components/Display/Table/CustomTable";
 import ActionMenu from "../../../../../components/Display/Table/components/ActionMenu";
+import GenderCell from "./components/GenderCell";
+import { ROUTE_CANDIDATES_EDIT } from "../../../../../Router/routes";
+import { useNavigate } from "react-router-dom";
 
 const ListCandidatesTable = ({ data }) => {
+  const navigate = useNavigate();
+
+  const redirectToEditCandidate = useCallback((id) => {
+    navigate(ROUTE_CANDIDATES_EDIT({ id }));
+  }, []);
+
   const columns = [
     {
       Header: 'Id',
@@ -32,6 +41,10 @@ const ListCandidatesTable = ({ data }) => {
     {
       Header: 'Gender',
       accessor: 'gender_id',
+      Cell: ({ row }) => {
+        const id = row.original?.gender_id
+        return <GenderCell id={id} />
+      },
       width: '5%'
     },
     {
@@ -57,8 +70,8 @@ const ListCandidatesTable = ({ data }) => {
     {
       Header: "Actions",
       accessor: "actions",
-      Cell: () => {
-        return <ActionMenu />;
+      Cell: ({ row }) => {
+        return <ActionMenu id={row.original?.id} handleDelete={() => {}} handleEdit={redirectToEditCandidate} />;
       },
       disableSortBy: true,
       width: '1%',

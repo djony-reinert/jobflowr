@@ -14,11 +14,12 @@ import {
   ROUTE_JOBS_EDIT,
   ROUTE_USERS,
   ROUTE_USERS_NEW,
-  ROUTE_USERS_EDIT
+  ROUTE_USERS_EDIT, ROUTE_CANDIDATES_NEW, ROUTE_CANDIDATES_EDIT
 } from "./routes";
 import EditJob from "../pages/Jobs/Edit/EditJob";
 import EditUser from "../pages/Users/Edit/EditUser";
 import ListUsers from "../pages/Users/List/ListUsers";
+import EditCandidate from "../pages/Candidates/Edit/EditCandidate";
 
 const RoutesConfig = () => {
   const routes = useRoutes([
@@ -34,7 +35,9 @@ const RoutesConfig = () => {
         { path: ROUTE_USERS(), element: <ListUsers /> },
         { path: ROUTE_USERS_NEW(), element: <EditUser /> },
         { path: ROUTE_USERS_EDIT({ id: ':id' }), element: <EditUser /> },
-        { path: ROUTE_CANDIDATES(), element: <ListCandidates /> }
+        { path: ROUTE_CANDIDATES(), element: <ListCandidates /> },
+        { path: ROUTE_CANDIDATES_NEW(), element: <EditCandidate /> },
+        { path: ROUTE_CANDIDATES_EDIT({ id: ':id' }), element: <EditCandidate /> }
       ],
     },
     {
