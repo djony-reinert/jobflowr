@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { Form, Formik } from 'formik';
 import { Box, Button } from '@mui/material';
 import { LoadingButton } from "@mui/lab";
@@ -45,10 +45,15 @@ const FormFullPageFooter = ({ actionButtonTitle, onCancel, isSubmitting }) => {
   );
 }
 const FormFullPage = ({ title, actionButtonTitle, initialValues, onSubmit, onCancel, children }) => {
+  const onSubmitProxy = useCallback((values, { setSubmitting }) => {
+    onSubmit(values);
+    setSubmitting(false);
+  }, [onSubmit]);
+
   return (
     <Formik
       initialValues={initialValues}
-      onSubmit={onSubmit}
+      onSubmit={onSubmitProxy}
     >
       {({ isSubmitting }) => (
         <FormFullPageLayout title={title} actionButtonTitle={actionButtonTitle} onCancel={onCancel} isSubmitting={isSubmitting}>
