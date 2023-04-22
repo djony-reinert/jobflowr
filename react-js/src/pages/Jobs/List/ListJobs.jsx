@@ -1,11 +1,11 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, useMemo } from 'react';
 import ListJobsTable from "./components/Table/ListJobsTable";
 import useFetchData from "../../../hooks/useFetchData";
 import { API_JOBS } from "../../../endpoints";
-import { Helmet } from "react-helmet-async";
-import { Box, Button, Typography } from "@mui/material";
+import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { ROUTE_JOBS_NEW } from "../../../Router/routes";
+import PageLayout from "../../../components/Display/Layout/PageLayout";
 
 const ListJobs = () => {
   const { connData, connLoading, doFetch } = useFetchData();
@@ -23,28 +23,20 @@ const ListJobs = () => {
     navigate(ROUTE_JOBS_NEW());
   }, []);
 
+  const actions = useMemo(() => {
+    return [
+      <Button key={0} variant="contained" color="primary" onClick={redirectToAddJob}>
+        Add Job
+      </Button>
+    ];
+  }, [redirectToAddJob]);
+
   if (connLoading) { return <div>Loading...</div> }
 
   return (
-    <>
-      <Helmet>
-        <title> Jobs | JobFlowr </title>
-      </Helmet>
-
-      <Box>
-        <Box sx={{ px: 2, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <Typography variant="h4">
-            List Jobs
-          </Typography>
-          <Button variant="contained" color="primary" onClick={redirectToAddJob}>
-            Add Job
-          </Button>
-        </Box>
-        <Box>
-          <ListJobsTable data={connData} doRefresh={doRefresh}/>
-        </Box>
-      </Box>
-    </>
+    <PageLayout title='List Jobs' actions={actions}>
+      <ListJobsTable data={connData} doRefresh={doRefresh}/>
+    </PageLayout>
   );
 };
 

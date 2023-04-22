@@ -25,7 +25,7 @@ const CustomTable = ({ columns, data }) => {
   });
 
   return (
-    <Box sx={{ px: 2, py: 4 }}>
+    <Box>
       <TableContainer component={Paper} sx={{ minWidth: 800 }}>
         <Table {...getTableProps()}>
           <CustomTableHeader
