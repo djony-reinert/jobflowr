@@ -18,26 +18,24 @@ const EditJob = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const doCreate = useCallback((data, { setSubmitting }) => {
+  const doCreate = useCallback((data) => {
     request(
       API_JOBS_CREATE(),
       data,
       "POST",
       (response) => {
-        setSubmitting(false);
         navigate(ROUTE_JOBS_EDIT({ id: response?.id }));
         alert('Created successfully!');
       }
     );
   }, []);
 
-  const doUpdate = useCallback((data, { setSubmitting }) => {
+  const doUpdate = useCallback((data) => {
     request(
       API_JOBS_UPDATE({ id }),
       data,
       "PUT",
       () => {
-        setSubmitting(false);
         alert('Updated successfully!');
       }
     );
