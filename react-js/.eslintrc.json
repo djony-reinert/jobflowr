@@ -1,7 +1,10 @@
 {
   "settings": {
-    "react": {
-      "version": "detect"
+    "import/resolver": {
+      "alias": {
+        "map": [["@reactjs", "./src/"]],
+        "extensions": [".js", ".jsx", ".scss"]
+      }
     }
   },
   "parser": "@babel/eslint-parser",
@@ -36,6 +39,5 @@
     "react/display-name": "off",
     "react/react-in-jsx-scope": "warn",
     "object-curly-spacing": ["warn", "always"]
-//    "object-curly-spacing": ["off","always", { "arraysInObjects": false, "objectsInObjects": true }],
   }
 }

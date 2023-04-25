@@ -16,6 +16,7 @@
     "@testing-library/user-event": "^13.2.1",
     "apexcharts": "^3.39.0",
     "change-case": "^4.1.2",
+    "craco": "^0.0.3",
     "date-fns": "^2.29.3",
     "formik": "^2.2.9",
     "numeral": "^2.0.6",
@@ -31,13 +32,19 @@
     "web-vitals": "^2.1.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "craco start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint .",
     "lint-fix": "eslint . --fix --ext .js,.jsx",
     "enum": "node ./scripts/gen_enums.js"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "@reactjs/(.*)": "<rootDir>/src/$1",
+      "@reactjs": "<rootDir>/src/index.js"
+    }
   },
   "eslintConfig": {
     "extends": [
