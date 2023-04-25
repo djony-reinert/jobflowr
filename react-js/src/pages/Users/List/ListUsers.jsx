@@ -6,6 +6,7 @@ import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { ROUTE_USERS_NEW } from "../../../Router/routes";
 import PageLayout from "../../../components/Display/Layout/PageLayout";
+import LinearProgress from "../../../components/Feedback/LinearProgress";
 
 const ListUsers = () => {
   const { connData, connLoading, doFetch } = useFetchData();
@@ -31,7 +32,9 @@ const ListUsers = () => {
     ];
   }, [redirectToAddUser]);
 
-  if (connLoading) { return <div>Loading...</div> }
+  if (connLoading) {
+    return <LinearProgress />
+  };
 
   return (
     <PageLayout title='List Users' actions={actions}>

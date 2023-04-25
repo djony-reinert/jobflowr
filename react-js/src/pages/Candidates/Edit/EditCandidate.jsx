@@ -5,6 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import useFetchData from "../../../hooks/useFetchData";
 import { API_CANDIDATES_EDIT } from "../../../endpoints";
 import { ROUTE_CANDIDATES } from "../../../Router/routes";
+import LinearProgress from "../../../components/Feedback/LinearProgress";
 
 const EditCandidate = () => {
   const { connData, connLoading, doFetch, setConnLoading } = useFetchData();
@@ -41,7 +42,9 @@ const EditCandidate = () => {
     navigate(ROUTE_CANDIDATES());
   }, []);
 
-  if (connLoading) return;
+  if (connLoading) {
+    return <LinearProgress />
+  };
 
   return (
     <FormFullPage
