@@ -32,7 +32,9 @@ const ListJobs = () => {
     ];
   }, [redirectToAddJob]);
 
-  if (connLoading) { return <LinearProgress /> }
+  if (connLoading) {
+    return <LinearProgress />
+  }
 
   return (
     <PageLayout title='List Jobs' actions={actions}>
