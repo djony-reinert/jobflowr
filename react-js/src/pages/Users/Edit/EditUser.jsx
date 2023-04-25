@@ -5,6 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import useFetchData from "../../../hooks/useFetchData";
 import { API_USERS_EDIT } from "../../../endpoints";
 import { ROUTE_USERS } from "../../../Router/routes";
+import LinearProgress from "../../../components/Feedback/LinearProgress";
 
 const EditUser = () => {
   const { connData, connLoading, doFetch, setConnLoading } = useFetchData();
@@ -41,7 +42,9 @@ const EditUser = () => {
     navigate(ROUTE_USERS());
   }, []);
 
-  if (connLoading) return;
+  if (connLoading) {
+    return <LinearProgress />
+  };
 
   return (
     <FormFullPage

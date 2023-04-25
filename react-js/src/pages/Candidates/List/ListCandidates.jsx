@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { ROUTE_CANDIDATES_NEW } from "../../../Router/routes";
 import { Button } from "@mui/material";
 import PageLayout from "../../../components/Display/Layout/PageLayout";
+import LinearProgress from "../../../components/Feedback/LinearProgress";
 
 const ListCandidates = () => {
   const { connData, connLoading, doFetch } = useFetchData();
@@ -31,7 +32,9 @@ const ListCandidates = () => {
     ];
   }, [redirectToAddCandidate]);
 
-  if (connLoading) { return <div>Loading...</div> }
+  if (connLoading) {
+    return <LinearProgress />
+  };
 
   return (
     <PageLayout title='List Candidates' actions={actions}>
