@@ -11,6 +11,7 @@ import DepartmentSelect from "./components/DepartmentSelect";
 import SalaryIntervalSelect from "./components/SalaryIntervalSelect";
 import { ROUTE_JOBS, ROUTE_JOBS_EDIT } from "../../../Router/routes";
 import request from "../../../utils/request";
+import LinearProgress from "../../../components/Feedback/LinearProgress";
 
 const EditJob = () => {
   const { connData, connLoading, doFetch, setConnLoading } = useFetchData();
@@ -71,7 +72,9 @@ const EditJob = () => {
     navigate(ROUTE_JOBS());
   }, []);
 
-  if (connLoading || departmentConnLoading) return;
+  if (connLoading || departmentConnLoading) {
+    return <LinearProgress />;
+  }
 
   return (
     <FormFullPage
