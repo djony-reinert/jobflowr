@@ -6,7 +6,7 @@ import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { ROUTE_JOBS_NEW } from "../../../Router/routes";
 import PageLayout from "../../../components/Display/Layout/PageLayout";
-import LinearProgress from "../../../components/Feedback/LinearProgress";
+import LinearProgress from "@reactjs/components/Feedback/LinearProgress";
 
 const ListJobs = () => {
   const { connData, connLoading, doFetch } = useFetchData();
