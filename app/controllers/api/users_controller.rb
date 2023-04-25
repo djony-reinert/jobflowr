@@ -6,14 +6,14 @@ module Api
 
     def index
       sql = 'SELECT * FROM users'
-      result = exec_query(sql: sql)
+      result = exec_query(sql:)
       render json: result.to_a
     end
 
     def show
       sql = 'SELECT * FROM users WHERE id = $1'
       values = [params[:id]]
-      result = exec_query(sql: sql, values: values)
+      result = exec_query(sql:, values:)
 
       if result.present?
         render json: result.first
@@ -23,23 +23,20 @@ module Api
     end
 
     def create
-      sql = 'INSERT INTO users (id, email, password_digest, first_name, last_name, phone, postal_code, country, state, city, street, role_id, created_at, updated_at) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14) RETURNING *' # rubocop:disable Layout/LineLength
+      id = SecureRandom.alphanumeric(22)
+      sql = 'INSERT INTO users (id, email, password_digest, first_name, last_name, phone, role_id, created_at, updated_at) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *' # rubocop:disable Layout/LineLength
       values = [
+        id,
         params[:email],
         BCrypt::Password.create(params[:password]),
         params[:first_name],
         params[:last_name],
         params[:phone],
-        params[:postal_code],
-        params[:country],
-        params[:state],
-        params[:city],
-        params[:street],
-        1,
+        params[:role_id],
         Time.now,
         Time.now
       ]
-      result = exec_query(sql: sql, values: values)
+      result = exec_query(sql:, values:)
 
       if result.present?
         render json: result.first, status: :created
@@ -49,36 +46,32 @@ module Api
     end
 
     def update
-      sql = 'UPDATE users SET email = $1, first_name = $2, last_name = $3, phone = $4, postal_code = $5, country = $6, state = $7, city = $8, street = $9, updated_at = $10 WHERE id = $11 RETURNING *' # rubocop:disable Layout/LineLength
+      sql = 'UPDATE users SET email = $1, first_name = $2, last_name = $3, phone = $4, role_id = $5, updated_at = 6 WHERE id = 7 RETURNING *' # rubocop:disable Layout/LineLength
       values = [
         params[:email],
         params[:first_name],
         params[:last_name],
         params[:phone],
-        params[:postal_code],
-        params[:country],
-        params[:state],
-        params[:city],
-        params[:street],
+        params[:role_id],
         Time.now,
         params[:id]
       ]
-      result = exec_query(sql: sql, values: values)
+      result = exec_query(sql:, values:)
 
       if result.present?
         render json: result.first
       else
-        render json: { errorr: 'Unable to update user.' }, status: :unprocessable_entity
+        render json: { error: 'Unable to update user.' }, status: :unprocessable_entity
       end
     end
 
     def destroy
-      sql = 'DELETE FROM users WHERE id = $1'
+      sql = 'DELETE FROM users WHERE id = $1 RETURNING *'
       values = [params[:id]]
-      result = exec_query(sql: sql, values: values)
+      result = ActiveRecord::Base.connection.exec_query(sql, 'SQL', values)
 
-      if result.cmd_tuples.positive?
-        head :no_content
+      if result.present?
+        render json: result.first
       else
         render json: { error: 'Unable to delete user.' }, status: :unprocessable_entity
       end

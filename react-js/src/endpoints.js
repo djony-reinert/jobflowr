@@ -15,7 +15,10 @@ export const API_CANDIDATES_EDIT = ({ id }) => `${BASE_CANDIDATES_URL}/${id}`;
 
 // Users
 export const API_USERS = () => BASE_USERS_URL;
+export const API_USERS_CREATE = () => BASE_USERS_URL;
 export const API_USERS_EDIT = ({ id }) => `${BASE_USERS_URL}/${id}`;
+export const API_USERS_UPDATE = ({ id }) => `${BASE_USERS_URL}/${id}`;
+export const API_USERS_DELETE = ({ id }) => `${BASE_USERS_URL}/${id}`;
 
 // Departments
 export const API_DEPARTMENTS = () => "/departments";

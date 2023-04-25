@@ -5,12 +5,26 @@ import ActionMenu from "../../../../../components/Display/Table/components/Actio
 import { useNavigate } from 'react-router-dom';
 import { ROUTE_USERS_EDIT } from "../../../../../Router/routes";
 import AccessTypeCell from "./components/AccessTypeCell";
+import request from "../../../../../utils/request";
+import { API_USERS_DELETE } from "../../../../../endpoints";
 
-const ListUsersTable = ({ data }) => {
+const ListUsersTable = ({ data, doRefresh }) => {
   const navigate = useNavigate();
 
   const redirectToEditUser = useCallback((id) => {
     navigate(ROUTE_USERS_EDIT({ id }));
+  }, []);
+
+  const doDelete = useCallback((id) => {
+    request(
+      API_USERS_DELETE({ id }),
+      id,
+      'DELETE',
+      () => {
+        doRefresh();
+        alert('Deleted successfully!');
+      }
+    );
   }, []);
 
   const columns = [
@@ -50,7 +64,7 @@ const ListUsersTable = ({ data }) => {
       Header: "Actions",
       accessor: "actions",
       Cell: ({ row }) => {
-        return <ActionMenu id={row.original?.id} handleDelete={() => {}} handleEdit={redirectToEditUser} />;
+        return <ActionMenu id={row.original?.id} handleDelete={doDelete} handleEdit={redirectToEditUser} />;
       },
       disableSortBy: true,
       width: '1%',
