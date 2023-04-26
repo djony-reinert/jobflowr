@@ -54,7 +54,9 @@ const EditCandidate = () => {
 
   const initialValues = useMemo(() => {
     if (!connData) {
-      return {}
+      return {
+        selected_jobs: []
+      }
     }
 
     return {
