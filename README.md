@@ -43,4 +43,4 @@ Para usar o JobFlowr, siga estas etapas:
 
 ## Licença
 
-Este projeto é licenciado sob a Licença MIT - consulte o arquivo [LICENSE](LICENSE) para obter mais detalhes.
+Este projeto é licenciado sob a Licença MIT.
