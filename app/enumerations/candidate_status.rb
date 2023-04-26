@@ -33,4 +33,8 @@ class CandidateStatus < ActiveHash::Base
       friendly_name: 'Withdraw'
     }
   ]
+
+  def self.[](name)
+    find_by(name:)
+  end
 end

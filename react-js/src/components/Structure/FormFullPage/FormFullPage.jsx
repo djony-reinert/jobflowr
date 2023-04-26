@@ -54,6 +54,7 @@ const FormFullPage = ({ title, actionButtonTitle, initialValues, onSubmit, onCan
     <Formik
       initialValues={initialValues}
       onSubmit={onSubmitProxy}
+      enableReinitialize
     >
       {({ isSubmitting }) => (
         <FormFullPageLayout title={title} actionButtonTitle={actionButtonTitle} onCancel={onCancel} isSubmitting={isSubmitting}>

@@ -3,10 +3,29 @@ import { useField } from 'formik';
 import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import PropTypes from 'prop-types';
 
-const FormikFieldSelect = ({ name, label: labelProp, options, ...props }) => {
+const FormikFieldSelect = ({ name, label: labelProp, options, onChange: customOnChange, ...props }) => {
   const [field] = useField(name);
+  field.value = field.value || '';
 
   const selectOptions = [{ label: '- select -', value: '' }, ...options];
+
+  const handleChange = (event) => {
+    const { value } = event.target;
+    const option = options?.find((opt) => opt.value === value);
+    const newValue = option ? option.value : '';
+    const newEvent = {
+      ...event,
+      target: {
+        ...event.target,
+        value: newValue,
+      },
+    };
+    field.onChange(newEvent);
+console.log(event)
+    if (typeof customOnChange === 'function') {
+      customOnChange(newEvent);
+    }
+  };
 
   return (
     <FormControl fullWidth margin="normal">
@@ -15,19 +34,7 @@ const FormikFieldSelect = ({ name, label: labelProp, options, ...props }) => {
         {...field}
         {...props}
         label={labelProp}
-        onChange={(event) => {
-          const { value } = event.target;
-          const option = options?.find((opt) => opt.value === value);
-          const newValue = option ? option.value : '';
-          const newEvent = {
-            ...event,
-            target: {
-              ...event.target,
-              value: newValue,
-            },
-          };
-          field.onChange(newEvent);
-        }}
+        onChange={handleChange}
         MenuProps={{
           PaperProps: {
             style: {
@@ -40,7 +47,7 @@ const FormikFieldSelect = ({ name, label: labelProp, options, ...props }) => {
           <MenuItem key={value} value={value}>
             {label}
           </MenuItem>
-        ))}
+        ))};
       </Select>
     </FormControl>
   );
@@ -50,9 +57,11 @@ export default FormikFieldSelect;
 
 FormikFieldSelect.propTypes = {
   name: PropTypes.string.isRequired,
-  options: PropTypes.arrayOf(PropTypes.shape({}))
+  options: PropTypes.arrayOf(PropTypes.shape({})),
+  onChange: PropTypes.func
 };
 
 FormikFieldSelect.defaultProps = {
-  options: []
+  options: [],
+  onChange: null
 };

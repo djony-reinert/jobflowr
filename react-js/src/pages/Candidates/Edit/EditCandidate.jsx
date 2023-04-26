@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo } from 'react';
-import { Box, FormControl, Grid } from '@mui/material';
+import { Box, Divider, FormControl, Grid } from '@mui/material';
 import FormFullPage from "../../../components/Structure/FormFullPage/FormFullPage";
 import { useNavigate, useParams } from 'react-router-dom';
 import useFetchData from "../../../hooks/useFetchData";
@@ -10,11 +10,16 @@ import request from "@reactjs/utils/request";
 import FormikFieldText from "@reactjs/components/Input/FormikFieldText";
 import CareerLevelSelect from "@reactjs/components/Input/CareerLevelSelect";
 import GenderSelect from "@reactjs/pages/Candidates/Edit/components/GenderSelect";
+import JobApplicationsSection from "@reactjs/pages/Candidates/List/components/JobApplicationsSection";
+import useJobsData from "@reactjs/hooks/appData/useJobsData";
 
 const EditCandidate = () => {
   const { connData, connLoading, doFetch, setConnLoading } = useFetchData();
+  const { connData: jobsConnData, connLoading: jobsConnLoading } = useJobsData();
   const { id } = useParams();
   const navigate = useNavigate();
+  const candidate = connData?.candidate;
+  const jobApplications = connData?.job_applications;
 
   const doCreate = useCallback((data) => {
     request(
@@ -53,12 +58,21 @@ const EditCandidate = () => {
     }
 
     return {
-      first_name: connData?.first_name,
-      last_name: connData?.last_name,
-      email: connData?.email,
-      phone: connData?.phone,
-      career_level_id: connData?.career_level_id,
-      gender_id: connData?.gender_id
+      first_name: candidate?.first_name,
+      last_name: candidate?.last_name,
+      email: candidate?.email,
+      phone: candidate?.phone,
+      career_level_id: candidate?.career_level_id,
+      gender_id: candidate?.gender_id,
+      selected_jobs: [],
+      job_applications: jobApplications?.reduce((acc, jobApplication) => {
+        acc[jobApplication.id] = {
+          candidate_status_id: jobApplication.candidate_status_id,
+          job_id: jobApplication.job_id,
+          candidate_id: jobApplication.candidate_id
+        };
+        return acc;
+      }, {})
     }
   }, [connData]);
 
@@ -66,7 +80,7 @@ const EditCandidate = () => {
     navigate(ROUTE_CANDIDATES());
   }, []);
 
-  if (connLoading) {
+  if (connLoading || jobsConnLoading) {
     return <LinearProgress />
   };
 
@@ -85,7 +99,7 @@ const EditCandidate = () => {
               <FormikFieldText name='first_name' label="First name" fullWidth margin="normal" />
             </Grid>
             <Grid item xs={6}>
-              <FormikFieldText name='last_name' label="Last name"  fullWidth margin="normal"/>
+              <FormikFieldText name='last_name' label="Last name"  fullWidth margin="normal" />
             </Grid>
           </Grid>
         </FormControl>
@@ -96,7 +110,7 @@ const EditCandidate = () => {
               <FormikFieldText name='email' label="Email" type="email" fullWidth margin="normal" />
             </Grid>
             <Grid item xs={6}>
-              <FormikFieldText name='phone' label="Phone"  fullWidth margin="normal"/>
+              <FormikFieldText name='phone' label="Phone" fullWidth margin="normal" />
             </Grid>
           </Grid>
         </FormControl>
@@ -104,12 +118,18 @@ const EditCandidate = () => {
         <FormControl fullWidth>
           <Grid container spacing={4}>
             <Grid item xs={6}>
-              <CareerLevelSelect name='career_level_id' label="Career Level" fullWidth margin="normal" />
+              <CareerLevelSelect name='career_level_id' label="Career Level" fullWidth />
             </Grid>
             <Grid item xs={6}>
-              <GenderSelect name='gender_id' label="Gender" fullWidth margin="normal" />
+              <GenderSelect name='gender_id' label="Gender" fullWidth/>
             </Grid>
           </Grid>
+        </FormControl>
+
+        <Divider sx={{ my: 2 }} />
+
+        <FormControl fullWidth>
+          <JobApplicationsSection jobs={jobsConnData} jobApplications={jobApplications} />
         </FormControl>
       </Box>
     </FormFullPage>

@@ -15,7 +15,10 @@ module Api
       result = exec_query(sql:, values:)
 
       if result.present?
-        render json: result.first
+        render json: {
+          candidate: result.first,
+          job_applications: JobApplication.where(candidate_id: result.first['id']).to_a
+        }
       else
         render json: { error: 'Candidate not found.' }, status: :not_found
       end
@@ -40,6 +43,7 @@ module Api
       result = exec_query(sql:, values:)
 
       if result.present?
+        create_job_applications(candidate_id: id)
         render json: result.first, status: :created
       else
         render json: { error: 'Unable to create candidate.' }, status: :unprocessable_entity
@@ -62,6 +66,8 @@ module Api
       result = exec_query(sql:, values:)
 
       if result.present?
+        create_job_applications(candidate_id: candidate_params[:id])
+        update_job_applications
         render json: result.first
       else
         render json: { error: 'Candidate not found or unable to update.' }, status: :unprocessable_entity
@@ -81,6 +87,49 @@ module Api
     end
 
     private
+
+    def create_job_applications(candidate_id:)
+      ActiveRecord::Base.transaction do
+        params[:jobs].each do |job_attributes|
+          id = SecureRandom.alphanumeric(22)
+          sql = 'INSERT INTO job_applications (id, candidate_id, job_id, candidate_status_id, created_by, updated_by, created_at, updated_at) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *' # rubocop:disable Layout/LineLength
+          values = [
+            id,
+            candidate_id,
+            job_attributes[:id],
+            CandidateStatus[:new].id,
+            User.all.take.id,
+            User.all.take.id,
+            Time.now,
+            Time.now
+          ]
+
+          exec_query(sql:, values:)
+        end
+      end
+    rescue ActiveRecord::StatementInvalid => e
+      render json: { error: e.message }, status: :unprocessable_entity
+      ActiveRecord::Base.connection.rollback_transaction
+    end
+
+    def update_job_applications
+      ActiveRecord::Base.transaction do
+        params[:job_applications].each do |job_application_id, job_application_attributes|
+          sql = 'UPDATE job_applications SET candidate_status_id = $1, updated_by = $2, updated_at = $3 WHERE id = $4 RETURNING *' # rubocop:disable Layout/LineLength
+          values = [
+            job_application_attributes['candidate_status_id'],
+            User.all.take.id,
+            Time.now,
+            job_application_id
+          ]
+
+          exec_query(sql:, values:)
+        end
+      end
+    rescue ActiveRecord::StatementInvalid => e
+      render json: { error: e.message }, status: :unprocessable_entity
+      ActiveRecord::Base.connection.rollback_transaction
+    end
 
     def candidate_params
       params.permit(
