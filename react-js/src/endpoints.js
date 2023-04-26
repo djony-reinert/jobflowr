@@ -11,7 +11,10 @@ export const API_JOBS_DELETE = ({ id }) => `${BASE_JOBS_URL}/${id}`;
 
 // Candidates
 export const API_CANDIDATES = () => BASE_CANDIDATES_URL;
+export const API_CANDIDATES_CREATE = () => BASE_CANDIDATES_URL;
 export const API_CANDIDATES_EDIT = ({ id }) => `${BASE_CANDIDATES_URL}/${id}`;
+export const API_CANDIDATES_UPDATE = ({ id }) => `${BASE_CANDIDATES_URL}/${id}`;
+export const API_CANDIDATES_DELETE = ({ id }) => `${BASE_CANDIDATES_URL}/${id}`;
 
 // Users
 export const API_USERS = () => BASE_USERS_URL;

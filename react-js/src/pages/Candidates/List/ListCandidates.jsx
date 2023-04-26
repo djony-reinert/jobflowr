@@ -38,7 +38,7 @@ const ListCandidates = () => {
 
   return (
     <PageLayout title='List Candidates' actions={actions}>
-      <ListCandidatesTable data={connData}/>
+      <ListCandidatesTable data={connData} doRefresh={doRefresh} />
     </PageLayout>
   );
 };
