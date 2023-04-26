@@ -90,7 +90,7 @@ module Api
 
     def create_job_applications(candidate_id:)
       ActiveRecord::Base.transaction do
-        params[:jobs].each do |job_attributes|
+        params[:selected_jobs].each do |job_attributes|
           id = SecureRandom.alphanumeric(22)
           sql = 'INSERT INTO job_applications (id, candidate_id, job_id, candidate_status_id, created_by, updated_by, created_at, updated_at) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *' # rubocop:disable Layout/LineLength
           values = [

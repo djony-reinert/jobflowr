@@ -6,6 +6,7 @@ const options = types.map(type => ({
   value: type.id,
   label: type.friendly_name
 }));
+
 const CandidateStatusSelect = ({ ...props }) => {
   return (
     <FormikFieldSelect options={options} {...props} />

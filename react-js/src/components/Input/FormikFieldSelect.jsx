@@ -21,7 +21,7 @@ const FormikFieldSelect = ({ name, label: labelProp, options, onChange: customOn
       },
     };
     field.onChange(newEvent);
-console.log(event)
+
     if (typeof customOnChange === 'function') {
       customOnChange(newEvent);
     }
