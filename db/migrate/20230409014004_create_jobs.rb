@@ -19,7 +19,8 @@ class CreateJobs < ActiveRecord::Migration[7.0]
         t.string :salary_interval
         t.integer :career_level_id
         t.integer :desired_degree_id
-        t.integer :remote_type_id, null: false
+        t.integer :job_type_id
+        t.integer :remote_type_id
         t.boolean :published
         t.datetime :filled_on
 

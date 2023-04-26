@@ -9,7 +9,9 @@ def enums
     remote_type: Faker::Number.between(from: JobRemoteType.data.pluck(:id).min, to: JobRemoteType.data.pluck(:id).max),
     gender: Faker::Number.between(from: Gender.data.pluck(:id).min, to: Gender.data.pluck(:id).max),
     candidate_status: Faker::Number.between(from: CandidateStatus.data.pluck(:id).min, to: CandidateStatus.data.pluck(:id).max), # rubocop:disable Layout/LineLength
-    candidate_doc_type: Faker::Number.between(from: CandidateDocType.data.pluck(:id).min, to: CandidateDocType.data.pluck(:id).max) # rubocop:disable Layout/LineLength
+    candidate_doc_type: Faker::Number.between(from: CandidateDocType.data.pluck(:id).min, to: CandidateDocType.data.pluck(:id).max), # rubocop:disable Layout/LineLength
+    job_type: Faker::Number.between(from: JobType.data.pluck(:id).min, to: JobType.data.pluck(:id).max),
+    recruitment_team_role: Faker::Number.between(from: RecruitmentTeamRole.data.pluck(:id).min, to: RecruitmentTeamRole.data.pluck(:id).max) # rubocop:disable Layout/LineLength
   }
 end
 
@@ -17,11 +19,11 @@ users = []
 5.times do
   email = Faker::Internet.unique.email
   user_id = Faker::Alphanumeric.alpha(number: 22).upcase
-  email = Faker::Internet.unique.email while User.exists?(email: email)
+  email = Faker::Internet.unique.email while User.exists?(email:)
 
   users << User.create!(
     id: user_id,
-    email: email,
+    email:,
     password_digest: Faker::Internet.password,
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
@@ -43,7 +45,7 @@ task_categories = []
   name = Faker::Job.field while task_categories.any? { |category| category.name == name }
 
   task_categories << TaskCategory.create!(
-    name: name,
+    name:,
     description: Faker::Lorem.sentence,
     created_by: User.ids.sample,
     updated_by: User.ids.sample
@@ -56,7 +58,7 @@ departments = []
   name = Faker::Commerce.unique.department(max: 2) while departments.any? { |department| department.name == name }
 
   departments << Department.create!(
-    name: name,
+    name:,
     created_by: User.ids.sample,
     updated_by: User.ids.sample
   )
@@ -68,12 +70,13 @@ jobs = []
   title = Faker::Job.unique.title while jobs.any? { |job| job.title == title }
 
   jobs << Job.create!(
-    title: title,
+    title:,
     description: Faker::Lorem.sentence,
     location: Faker::Address.city,
     company: Faker::Company.name,
     department_id: departments.sample.id,
     status_id: enums[:job_status],
+    job_type_id: enums[:job_type],
     salary_maximum: Faker::Number.between(from: 50_000, to: 150_000),
     salary_minimum: Faker::Number.between(from: 20_000, to: 50_000),
     salary_interval: SalaryInterval.all.map { |interval| interval[:friendly_name] }.sample,
@@ -96,12 +99,12 @@ candidates = []
   unique_email = false
   until unique_email
     email = Faker::Internet.email(name: "#{first_name} #{last_name}")
-    unique_email = true unless Candidate.exists?(email: email)
+    unique_email = true unless Candidate.exists?(email:)
   end
 
   unique_name = false
   until unique_name
-    if !Candidate.exists?(first_name: first_name, last_name: last_name)
+    if !Candidate.exists?(first_name:, last_name:)
       unique_name = true
     else
       first_name = Faker::Name.first_name
@@ -111,10 +114,10 @@ candidates = []
 
   candidates << Candidate.create!(
     id: candidate_id,
-    first_name: first_name,
-    last_name: last_name,
+    first_name:,
+    last_name:,
     phone: Faker::PhoneNumber.cell_phone,
-    email: email,
+    email:,
     gender_id: enums[:gender],
     country: Faker::Address.country,
     postal_code: Faker::Address.postcode,
@@ -167,8 +170,8 @@ Candidate.all.each do |candidate|
       description: Faker::Lorem.paragraphs(number: 2).join("\n\n"),
       completed: Faker::Boolean.boolean,
       due_date: Faker::Date.between(from: Date.today, to: 1.month.from_now),
-      start_time: start_time,
-      end_time: end_time,
+      start_time:,
+      end_time:,
       user_id: User.ids.sample,
       candidate_id: candidate.id,
       task_category_id: task_category.id,
@@ -177,4 +180,14 @@ Candidate.all.each do |candidate|
       updated_by: User.ids.sample
     )
   end
+end
+
+30.times do
+  JobAssignment.create!(
+    job_id: Job.ids.sample,
+    user_id: User.ids.sample,
+    recruitment_team_role_id: enums[:recruitment_team_role],
+    created_by: User.ids.sample,
+    updated_by: User.ids.sample
+  )
 end

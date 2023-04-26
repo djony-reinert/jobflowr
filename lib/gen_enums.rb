@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'active_support/all'
 require 'active_hash'
 
@@ -27,7 +28,7 @@ Dir.glob(File.join(input_folder, '*.rb')).sort.each do |file_path|
   types = enum_data.map { |data| data[:name].camelize(:lower) }.join(",\n  ")
 
   # Generate the output file
-  output_file_path = File.join(output_folder, class_name.camelize(:lower) + '.js')
+  output_file_path = File.join(output_folder, "#{class_name.camelize(:lower)}.js")
   File.write(output_file_path, <<~JS)
     #{exports}
     const types = [

@@ -4,7 +4,7 @@ module Api
   class CandidatesController < ApplicationController
     def index
       sql = 'SELECT * FROM candidates'
-      result = exec_query(sql: sql)
+      result = exec_query(sql:)
 
       render json: result.to_a
     end
@@ -12,7 +12,7 @@ module Api
     def show
       sql = 'SELECT * FROM candidates WHERE id = $1'
       values = [params[:id]]
-      result = exec_query(sql: sql, values: values)
+      result = exec_query(sql:, values:)
 
       if result.present?
         render json: result.first
@@ -40,7 +40,7 @@ module Api
         Time.now,
         Time.now
       ]
-      result = exec_query(sql: sql, values: values)
+      result = exec_query(sql:, values:)
 
       if result.present?
         render json: result.first, status: :created
@@ -67,7 +67,7 @@ module Api
         Time.now,
         params[:id]
       ]
-      result = exec_query(sql: sql, values: values)
+      result = exec_query(sql:, values:)
 
       if result.present?
         render json: result.first
@@ -79,7 +79,7 @@ module Api
     def destroy
       sql = 'DELETE FROM candidates WHERE id = $1 RETURNING *'
       values = [params[:id]]
-      result = exec_query(sql: sql, values: values)
+      result = exec_query(sql:, values:)
 
       if result.present?
         render json: result.first

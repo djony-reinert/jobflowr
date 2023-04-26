@@ -6,4 +6,5 @@ class User < ApplicationRecord
 
   has_many :documents, as: :owner
   has_many :tasks
+  has_many :job_assignments
 end

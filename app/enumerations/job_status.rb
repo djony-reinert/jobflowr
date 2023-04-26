@@ -47,6 +47,6 @@ class JobStatus < ActiveHash::Base
   ]
 
   def self.[](name)
-    self.find_by(name: name)
+    find_by(name:)
   end
 end

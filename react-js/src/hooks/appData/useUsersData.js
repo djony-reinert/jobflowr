@@ -1,12 +1,12 @@
 import { useEffect } from 'react';
 import useFetchData from "../useFetchData";
-import { API_DEPARTMENTS } from "../../endpoints";
+import { API_USERS } from "../../endpoints";
 
-const useDepartmentData = () => {
+const useUsersData = () => {
   const { connLoading, connErrorEl, connData, doFetch } = useFetchData();
 
   useEffect(() => {
-    doFetch(API_DEPARTMENTS());
+    doFetch(API_USERS());
   }, []);
 
   return {
@@ -16,4 +16,4 @@ const useDepartmentData = () => {
   };
 };
 
-export default useDepartmentData;
+export default useUsersData;
