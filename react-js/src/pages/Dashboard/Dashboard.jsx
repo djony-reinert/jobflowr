@@ -29,7 +29,7 @@ const Dashboard = () => {
       </Helmet>
 
       <Box sx={{ px: 2 }}>
-        <Typography variant="h4" sx={{ mb: 5 }}>
+        <Typography variant="h4" sx={{ mb: 4 }}>
           Dashboard
         </Typography>
 
