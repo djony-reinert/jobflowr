@@ -37,4 +37,9 @@ class CandidateStatus < ActiveHash::Base
   def self.[](name)
     find_by(name:)
   end
+
+  def self.friendly_name_for_id(status_id)
+    status = find_by(id: status_id)
+    status&.friendly_name || 'Unknown Status'
+  end
 end
