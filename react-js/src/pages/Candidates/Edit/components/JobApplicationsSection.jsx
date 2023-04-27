@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import { useFormikContext } from 'formik';
 import { Divider, FormControl, Typography } from '@mui/material';
 import FormikAutocomplete from "@reactjs/components/Input/FormikAutocomplete";
-import CandidateStatusSelect from "@reactjs/pages/Candidates/List/components/CandidateStatusSelect";
+import CandidateStatusSelect from "@reactjs/pages/Candidates/Edit/components/CandidateStatusSelect";
 
 const JobApplicationsSection = ({ jobs, jobApplications }) => {
   const { setFieldValue } = useFormikContext();

@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo } from 'react';
-import { Box, FormControl, Grid } from '@mui/material';
+import { Box, Divider, FormControl, Grid } from '@mui/material';
 import FormFullPage from "../../../components/Structure/FormFullPage/FormFullPage";
 import { useNavigate, useParams } from 'react-router-dom';
 import FormikFieldText from "../../../components/Input/FormikFieldText";
@@ -12,13 +12,12 @@ import SalaryIntervalSelect from "./components/SalaryIntervalSelect";
 import { ROUTE_JOBS, ROUTE_JOBS_EDIT } from "../../../Router/routes";
 import request from "../../../utils/request";
 import LinearProgress from "../../../components/Feedback/LinearProgress";
-import UserSelect from "@reactjs/components/Input/UserSelect";
-import RecruitmentTeamRoleSelect from "@reactjs/pages/Jobs/Edit/components/RecruitmentTeamRoleSelect";
 import useUsersData from "@reactjs/hooks/appData/useUsersData";
 import JobTypeSelect from "@reactjs/pages/Jobs/Edit/components/JobTypeSelect";
 import CareerLevelSelect from "@reactjs/components/Input/CareerLevelSelect";
 import DegreeSelect from "@reactjs/components/Input/DegreeSelect";
 import JobStatusSelect from "@reactjs/pages/Jobs/Edit/components/JobStatusSelect";
+import RecruitmentTeamSection from "@reactjs/pages/Jobs/Edit/components/RecruitmentTeamSection";
 
 const EditJob = () => {
   const { connData, connLoading, doFetch, setConnLoading } = useFetchData();
@@ -27,7 +26,7 @@ const EditJob = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const job = connData?.job;
-  const jobAssignment = connData?.job_assignment;
+  const jobAssignments = connData?.job_assignments;
 
   const doCreate = useCallback((data) => {
     request(
@@ -68,8 +67,15 @@ const EditJob = () => {
     return {
       title: job?.title,
       status_id: job?.status_id,
-      user_id: jobAssignment?.user_id,
-      recruitment_team_role_id: jobAssignment?.recruitment_team_role_id,
+      recruitment_team: jobAssignments?.reduce((acc, jobAssignment, index) => {
+        acc[index] = {
+          job_assignment_id: jobAssignment.id,
+          job_id: jobAssignment.job_id,
+          user_id: jobAssignment.user_id,
+          recruitment_team_role_id: jobAssignment.recruitment_team_role_id
+        };
+        return acc;
+      }, {}),
       job_type_id: job?.job_type_id,
       career_level_id: job?.career_level_id,
       desired_degree_id: job?.desired_degree_id,
@@ -102,7 +108,7 @@ const EditJob = () => {
     >
       <Box sx={{ marginTop: -2 }}>
         <FormControl fullWidth>
-          <JobStatusSelect name='status_id' label='Status' fullWidth margin="normal"/>
+          <JobStatusSelect name='status_id' label='Status' fullWidth />
         </FormControl>
 
         <FormControl fullWidth>
@@ -167,18 +173,11 @@ const EditJob = () => {
           </Grid>
         </FormControl>
 
-        <FormControl fullWidth>
-          <Grid container spacing={4}>
-            <Grid item xs={6}>
-              <UserSelect name='user_id' label='Responsible' users={usersConnData} />
-            </Grid>
-            <Grid item xs={6}>
-              <RecruitmentTeamRoleSelect name='recruitment_team_role_id' label='Recruitment Team Role' />
-            </Grid>
-          </Grid>
-        </FormControl>
-
         <FormikFieldText name='description' label="Description" fullWidth multiline rows={14} margin="normal" />
+
+        <Divider sx={{ my: 2 }} />
+
+        <RecruitmentTeamSection users={usersConnData} />
       </Box>
     </FormFullPage>
   );

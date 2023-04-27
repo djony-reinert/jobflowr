@@ -10,7 +10,7 @@ import request from "@reactjs/utils/request";
 import FormikFieldText from "@reactjs/components/Input/FormikFieldText";
 import CareerLevelSelect from "@reactjs/components/Input/CareerLevelSelect";
 import GenderSelect from "@reactjs/pages/Candidates/Edit/components/GenderSelect";
-import JobApplicationsSection from "@reactjs/pages/Candidates/List/components/JobApplicationsSection";
+import JobApplicationsSection from "@reactjs/pages/Candidates/Edit/components/JobApplicationsSection";
 import useJobsData from "@reactjs/hooks/appData/useJobsData";
 
 const EditCandidate = () => {
