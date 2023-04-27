@@ -1,22 +1,32 @@
-const request = async (endpoint, data, method, onSuccess = () => {}, onError = () => {}) => {
+const request = async (
+  endpoint,
+  data,
+  method,
+  onSuccess = () => {},
+  onError = () => {}
+) => {
   const abortController = new AbortController();
 
-  fetch(`http://localhost:3000/api${endpoint}`, {
-    method,
-    body: JSON.stringify(data),
-    headers: { "Content-Type": "application/json" },
-    signal: abortController.signal,
-  })
-    .then((response) => response.json())
-    .then((response) => {
-      if (onSuccess) onSuccess(response);
-      abortController.abort();
-    })
-    .catch((error) => {
-      if (error.name !== "AbortError") {
-        if (onError) onError(error);
-      }
+  try {
+    const response = await fetch(`http://localhost:3000/api${endpoint}`, {
+      method,
+      body: JSON.stringify(data),
+      headers: { "Content-Type": "application/json" },
+      signal: abortController.signal,
     });
+
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+
+    const jsonResponse = await response.json();
+
+    onSuccess(jsonResponse);
+  } catch (error) {
+    if (onError) {
+      onError(error);
+    }
+  }
 
   return () => {
     abortController.abort();
