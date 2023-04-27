@@ -28,18 +28,31 @@ O projeto foi desenvolvido utilizando as seguintes tecnologias:
 
 Para instalar o JobFlowr, siga estas etapas:
 
-1. Certifique-se de ter o Docker instalado em seu computador.
-2. Clone este repositório em seu computador.
-3. Navegue até a pasta do projeto e execute o seguinte comando: `docker ...`
-4. Aguarde até que todas as dependências sejam instaladas e o aplicativo esteja em execução.
+1. Clone este repositório em seu computador.
+2. Navegue até a pasta do projeto.
+3. Execute o seguinte comando para construir as imagens Docker:
+
+    ```
+    docker-compose build
+    ```
+
+4. Depois que as imagens forem construídas, execute o seguinte comando para iniciar os containers Docker:
+
+    ```
+    docker-compose up
+    ```
+
+5. Aguarde até que todas as dependências sejam instaladas e o aplicativo esteja em execução.
+6. Abra o seu navegador e acesse `http://localhost:8000` para visualizar o aplicativo JobFlowr.
 
 ## Como usar
 
 Para usar o JobFlowr, siga estas etapas:
 
-1. Acesse o aplicativo em seu navegador em `http://localhost:3000`.
-2. Crie uma conta de usuário.
-3. Navegue pelas opções e suas operações.
+1. Acesse o aplicativo em seu navegador em `http://localhost:8000`.
+2. Navegue pelas opções e suas operações.
+
+Observação: Não é necessário registrar ou logar para entrar, controle de sessão ainda não foi implementado.
 
 ## Licença
 
