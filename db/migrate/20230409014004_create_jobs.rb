@@ -21,8 +21,6 @@ class CreateJobs < ActiveRecord::Migration[7.0]
         t.integer :desired_degree_id
         t.integer :job_type_id
         t.integer :remote_type_id
-        t.boolean :published
-        t.datetime :filled_on
 
         t.userstamps
         t.timestamps

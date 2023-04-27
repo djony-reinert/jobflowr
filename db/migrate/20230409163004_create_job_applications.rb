@@ -10,7 +10,7 @@ class CreateJobApplications < ActiveRecord::Migration[7.0]
         t.string :id, limit: 22, null: false, primary_key: true
         t.references :candidate, null: false, foreign_key: true, limit: 22, type: :string
         t.references :job, null: false, foreign_key: true, limit: 22, type: :string
-        t.integer :candidate_status_id
+        t.integer :candidate_status_id, null: false
         t.string :cover_letter_id, limit: 22
         t.string :resume_id, limit: 22
 

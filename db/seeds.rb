@@ -18,7 +18,7 @@ end
 users = []
 5.times do
   email = Faker::Internet.unique.email
-  user_id = Faker::Alphanumeric.alpha(number: 22).upcase
+  user_id = Faker::Alphanumeric.alpha(number: 22)
   email = Faker::Internet.unique.email while User.exists?(email:)
 
   users << User.create!(
@@ -28,11 +28,6 @@ users = []
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
     phone: Faker::PhoneNumber.cell_phone,
-    postal_code: Faker::Address.postcode,
-    country: Faker::Address.country,
-    state: Faker::Address.state,
-    city: Faker::Address.city,
-    street: Faker::Address.street_name,
     role_id: enums[:access_type],
     created_by: user_id,
     updated_by: user_id
@@ -83,8 +78,6 @@ jobs = []
     career_level_id: enums[:career_level],
     desired_degree_id: enums[:desired_degree],
     remote_type_id: enums[:remote_type],
-    published: Faker::Boolean.boolean,
-    filled_on: Faker::Date.between(from: '2023-01-01', to: '2023-05-10'),
     created_by: User.ids.sample,
     updated_by: User.ids.sample
   )
@@ -119,11 +112,6 @@ candidates = []
     phone: Faker::PhoneNumber.cell_phone,
     email:,
     gender_id: enums[:gender],
-    country: Faker::Address.country,
-    postal_code: Faker::Address.postcode,
-    state: Faker::Address.state,
-    city: Faker::Address.city,
-    street: Faker::Address.street_name,
     career_level_id: enums[:career_level],
     created_by: User.ids.sample,
     updated_by: User.ids.sample
