@@ -46,7 +46,7 @@ module Api
     end
 
     def update
-      sql = 'UPDATE users SET email = $1, first_name = $2, last_name = $3, phone = $4, role_id = $5, updated_at = 6 WHERE id = 7 RETURNING *' # rubocop:disable Layout/LineLength
+      sql = 'UPDATE users SET email = $1, first_name = $2, last_name = $3, phone = $4, role_id = $5, updated_at = $6 WHERE id = $7 RETURNING *' # rubocop:disable Layout/LineLength
       values = [
         params[:email],
         params[:first_name],

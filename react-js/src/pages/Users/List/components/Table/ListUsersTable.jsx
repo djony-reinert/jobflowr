@@ -7,6 +7,7 @@ import { ROUTE_USERS_EDIT } from "../../../../../Router/routes";
 import AccessTypeCell from "./components/AccessTypeCell";
 import request from "../../../../../utils/request";
 import { API_USERS_DELETE } from "../../../../../endpoints";
+import { toast } from "@reactjs/components/Feedback/toast";
 
 const ListUsersTable = ({ data, doRefresh }) => {
   const navigate = useNavigate();
@@ -22,7 +23,7 @@ const ListUsersTable = ({ data, doRefresh }) => {
       'DELETE',
       () => {
         doRefresh();
-        alert('Deleted successfully!');
+        toast({ color: 'success', message: 'Deleted successfully!' });
       }
     );
   }, []);
