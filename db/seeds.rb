@@ -60,7 +60,7 @@ departments = []
 end
 
 jobs = []
-30.times do
+60.times do
   title = Faker::Job.unique.title
   title = Faker::Job.unique.title while jobs.any? { |job| job.title == title }
 
@@ -143,7 +143,11 @@ Job.all.each do |job|
       candidate_id: candidate.id,
       candidate_status_id: enums[:candidate_status],
       cover_letter_id: documents.sample.id,
-      resume_id: documents.sample.id
+      resume_id: documents.sample.id,
+      created_by: User.ids.sample,
+      updated_by: User.ids.sample,
+      created_at: Faker::Time.between(from: DateTime.now - 1.month, to: DateTime.now),
+      updated_at: Faker::Time.between(from: DateTime.now - 1.month, to: DateTime.now)
     )
   end
 end
@@ -170,7 +174,7 @@ Candidate.all.each do |candidate|
   end
 end
 
-30.times do
+60.times do
   JobAssignment.create!(
     job_id: Job.ids.sample,
     user_id: User.ids.sample,

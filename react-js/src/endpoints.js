@@ -25,3 +25,6 @@ export const API_USERS_DELETE = ({ id }) => `${BASE_USERS_URL}/${id}`;
 
 // Departments
 export const API_DEPARTMENTS = () => "/departments";
+
+// Dashboard
+export const API_CHARTS = ({ userId }) => `/charts/${userId}`;

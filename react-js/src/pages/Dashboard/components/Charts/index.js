@@ -1,5 +1,3 @@
-export { default as AppCurrentVisits } from './AppCurrentVisits';
-export { default as AppOrderTimeline } from './AppOrderTimeline';
-export { default as AppWebsiteVisits } from './AppWebsiteVisits';
-export { default as AppWidgetSummary } from './AppWidgetSummary';
-export { default as AppConversionRates } from './AppConversionRates';
+export { default as SummaryChart } from './SummaryChart';
+export { default as JobAssignmentsChart } from './JobAssignmentsChart';
+export { default as UncompletedTasksChart } from './UncompletedTasksChart';

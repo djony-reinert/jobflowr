@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { alpha, styled } from '@mui/material/styles';
 import { Card, Typography } from '@mui/material';
-import { fShortenNumber } from '../../../../utils/formatNumber';
 import Iconify from '../../../../components/iconify';
 
 const StyledIcon = styled('div')(({ theme }) => ({
@@ -16,7 +15,7 @@ const StyledIcon = styled('div')(({ theme }) => ({
   marginBottom: theme.spacing(3),
 }));
 
-AppWidgetSummary.propTypes = {
+SummaryChart.propTypes = {
   color: PropTypes.string,
   icon: PropTypes.string,
   title: PropTypes.string.isRequired,
@@ -24,7 +23,7 @@ AppWidgetSummary.propTypes = {
   sx: PropTypes.object,
 };
 
-export default function AppWidgetSummary({ title, total, icon, color = 'primary', sx, ...other }) {
+export default function SummaryChart({ title, total, icon, color = 'primary', sx, ...other }) {
   return (
     <Card
       sx={{
@@ -50,7 +49,7 @@ export default function AppWidgetSummary({ title, total, icon, color = 'primary'
         <Iconify icon={icon} width={24} height={24} />
       </StyledIcon>
 
-      <Typography variant="h3">{fShortenNumber(total)}</Typography>
+      <Typography variant="h3">{total}</Typography>
 
       <Typography variant="subtitle2" sx={{ opacity: 0.72 }}>
         {title}
