@@ -5,6 +5,11 @@ services:
     image: jobflowr-api
     ports:
       - "3000:3000"
-    volumes:
-      - .:/app
-      - /app/react-js
+
+  jobflowr-react:
+    build:
+      context: .
+      dockerfile: react-js/Dockerfile
+    image: jobflowr-react
+    ports:
+      - "8000:3000"
