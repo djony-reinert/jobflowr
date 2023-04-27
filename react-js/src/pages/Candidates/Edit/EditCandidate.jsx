@@ -3,7 +3,7 @@ import { Box, Divider, FormControl, Grid } from '@mui/material';
 import FormFullPage from "../../../components/Structure/FormFullPage/FormFullPage";
 import { useNavigate, useParams } from 'react-router-dom';
 import useFetchData from "../../../hooks/useFetchData";
-import { API_CANDIDATES_EDIT, API_CANDIDATES_CREATE, API_CANDIDATES_UPDATE } from "@reactjs/endpoints";
+import { API_CANDIDATES_CREATE, API_CANDIDATES_EDIT, API_CANDIDATES_UPDATE } from "@reactjs/endpoints";
 import { ROUTE_CANDIDATES, ROUTE_CANDIDATES_EDIT } from "../../../Router/routes";
 import LinearProgress from "../../../components/Feedback/LinearProgress";
 import request from "@reactjs/utils/request";
@@ -12,6 +12,7 @@ import CareerLevelSelect from "@reactjs/components/Input/CareerLevelSelect";
 import GenderSelect from "@reactjs/pages/Candidates/Edit/components/GenderSelect";
 import JobApplicationsSection from "@reactjs/pages/Candidates/Edit/components/JobApplicationsSection";
 import useJobsData from "@reactjs/hooks/appData/useJobsData";
+import { toast } from "@reactjs/components/Feedback/toast";
 
 const EditCandidate = () => {
   const { connData, connLoading, doFetch, setConnLoading } = useFetchData();
@@ -28,7 +29,7 @@ const EditCandidate = () => {
       "POST",
       (response) => {
         navigate(ROUTE_CANDIDATES_EDIT({ id: response?.id }));
-        alert('Created successfully!');
+        toast({ color: 'success', message: 'Created successfully!' });
       }
     );
   }, []);
@@ -39,7 +40,7 @@ const EditCandidate = () => {
       data,
       "PUT",
       () => {
-        alert('Updated successfully!');
+        toast({ color: 'success', message: 'Updated successfully!' });
       }
     );
   }, [id]);

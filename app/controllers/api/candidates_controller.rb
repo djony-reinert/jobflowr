@@ -77,6 +77,10 @@ module Api
     def destroy
       sql = 'DELETE FROM candidates WHERE id = $1 RETURNING *'
       values = [candidate_params[:id]]
+
+      # delete dependent job_application first
+      exec_query(sql: 'DELETE FROM job_applications WHERE candidate_id = $1', values:)
+
       result = exec_query(sql:, values:)
 
       if result.present?

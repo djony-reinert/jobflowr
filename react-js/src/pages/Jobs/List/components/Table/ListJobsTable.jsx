@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { ROUTE_JOBS_EDIT } from "../../../../../Router/routes";
 import request from "../../../../../utils/request";
 import { API_JOBS_DELETE } from "../../../../../endpoints";
+import { toast } from "@reactjs/components/Feedback/toast";
 
 const ListJobsTable = ({ data, doRefresh }) => {
   const navigate = useNavigate();
@@ -21,7 +22,7 @@ const ListJobsTable = ({ data, doRefresh }) => {
       'DELETE',
       () => {
         doRefresh();
-        alert('Deleted successfully!');
+        toast({ color: 'success', message: 'Deleted successfully!' });
       }
     );
   }, []);

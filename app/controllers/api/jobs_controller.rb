@@ -111,8 +111,10 @@ module Api
     private
 
     def create_job_assignments(job_id:, recruitment_team:)
+      recruitment_team_data = params[:id] ? recruitment_team&.values : recruitment_team
+
       ActiveRecord::Base.transaction do
-        recruitment_team&.values&.each do |rt_attributes|
+        recruitment_team_data&.each do |rt_attributes|
           next if rt_attributes[:job_assignment_id].present? || rt_attributes[:user_id].blank? || rt_attributes[:recruitment_team_role_id].blank? # rubocop:disable Layout/LineLength
 
           id = SecureRandom.alphanumeric(22)

@@ -18,6 +18,7 @@ import CareerLevelSelect from "@reactjs/components/Input/CareerLevelSelect";
 import DegreeSelect from "@reactjs/components/Input/DegreeSelect";
 import JobStatusSelect from "@reactjs/pages/Jobs/Edit/components/JobStatusSelect";
 import RecruitmentTeamSection from "@reactjs/pages/Jobs/Edit/components/RecruitmentTeamSection";
+import { toast } from "@reactjs/components/Feedback/toast";
 
 const EditJob = () => {
   const { connData, connLoading, doFetch, setConnLoading } = useFetchData();
@@ -35,7 +36,7 @@ const EditJob = () => {
       "POST",
       (response) => {
         navigate(ROUTE_JOBS_EDIT({ id: response?.id }));
-        alert('Created successfully!');
+        toast({ color: 'success', message: 'Created successfully!' });
       }
     );
   }, []);
@@ -46,7 +47,7 @@ const EditJob = () => {
       data,
       "PUT",
       () => {
-        alert('Updated successfully!');
+        toast({ color: 'success', message: 'Updated successfully!' });
       }
     );
   }, [id]);

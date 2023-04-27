@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import request from "@reactjs/utils/request";
 import { API_CANDIDATES_DELETE } from "@reactjs/endpoints";
 import CareerLevelCell from "@reactjs/pages/Candidates/List/components/Table/components/CareerLevelCell";
+import { toast } from "@reactjs/components/Feedback/toast";
 
 const ListCandidatesTable = ({ data, doRefresh }) => {
   const navigate = useNavigate();
@@ -23,7 +24,7 @@ const ListCandidatesTable = ({ data, doRefresh }) => {
       'DELETE',
       () => {
         doRefresh();
-        alert('Deleted successfully!');
+        toast({ color: 'success', message: 'Deleted successfully!' });
       }
     );
   }, []);

@@ -9,6 +9,7 @@ import LinearProgress from "../../../components/Feedback/LinearProgress";
 import FormikFieldText from "../../../components/Input/FormikFieldText";
 import AccessTypeSelect from "./components/AccessTypeSelect";
 import request from "../../../utils/request";
+import { toast } from "@reactjs/components/Feedback/toast";
 
 const EditUser = () => {
   const { connData, connLoading, doFetch, setConnLoading } = useFetchData();
@@ -22,7 +23,7 @@ const EditUser = () => {
       "POST",
       (response) => {
         navigate(ROUTE_USERS_EDIT({ id: response?.id }));
-        alert('Created successfully!');
+        toast({ color: 'success', message: 'Deleted successfully!' });
       }
     );
   }, []);
@@ -33,7 +34,7 @@ const EditUser = () => {
       data,
       "PUT",
       () => {
-        alert('Updated successfully!');
+        toast({ color: 'success', message: 'Updated successfully!' });
       }
     );
   }, [id]);
