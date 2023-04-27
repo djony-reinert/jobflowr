@@ -20,8 +20,8 @@ const CustomTable = ({ columns, data }) => {
 
   const { getTableProps, headerGroups, rows, prepareRow } = useTable({
     columns,
-    data: visibleRows,
-    initialState: { hiddenColumns: columns.filter(column => column.hide).map(column => column.accessor) }
+    data: visibleRows || [],
+    initialState: { hiddenColumns: columns?.filter(column => column.hide).map(column => column.accessor) }
   });
 
   return (

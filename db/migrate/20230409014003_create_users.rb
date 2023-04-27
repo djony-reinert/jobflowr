@@ -13,11 +13,6 @@ class CreateUsers < ActiveRecord::Migration[7.0]
         t.string :first_name, null: false
         t.string :last_name, null: false
         t.string :phone
-        t.string :postal_code
-        t.string :country
-        t.string :state
-        t.string :city
-        t.string :street
         t.integer :role_id, null: false
 
         t.userstamps
