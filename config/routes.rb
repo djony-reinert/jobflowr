@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     resources :task_categories, only: %i[index show]
     resources :tasks, only: %i[index show]
     resources :documents, only: %i[show create]
+    resources :reports, only: %i[index]
 
     get 'charts/:user_id', to: 'dashboard#charts'
   end

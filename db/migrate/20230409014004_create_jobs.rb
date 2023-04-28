@@ -12,7 +12,7 @@ class CreateJobs < ActiveRecord::Migration[7.0]
         t.string :description, null: false
         t.string :location
         t.string :company
-        t.string :department_id, limit: 22
+        t.references :department, foreign_key: true, limit: 22, type: :string
         t.integer :status_id, null: false
         t.integer :salary_maximum
         t.integer :salary_minimum

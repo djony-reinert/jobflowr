@@ -1,5 +1,3 @@
-export const ROUTE_HOME = () => "/";
-
 // Jobs
 export const ROUTE_JOBS = () => "/jobs";
 export const ROUTE_JOBS_NEW = () => "/jobs/new";
@@ -16,4 +14,4 @@ export const ROUTE_USERS_NEW = () => "/users/new";
 export const ROUTE_USERS_EDIT = ({ id = '' }) => `/users/${id}/edit`;
 
 // Tasks
-export const ROUTE_TASKS = () => "/tasks";
+export const ROUTE_REPORTS = () => "/reports";
