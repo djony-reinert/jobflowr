@@ -28,3 +28,6 @@ export const API_DEPARTMENTS = () => "/departments";
 
 // Dashboard
 export const API_CHARTS = ({ userId }) => `/charts/${userId}`;
+
+// Reports
+export const API_REPORTS = () => "/reports";

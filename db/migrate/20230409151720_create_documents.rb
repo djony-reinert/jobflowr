@@ -8,7 +8,7 @@ class CreateDocuments < ActiveRecord::Migration[7.0]
     with_lock_timeout do
       create_table :documents, id: false do |t|
         t.string :id, limit: 22, null: false, primary_key: true
-        t.string :name
+        t.string :name, null: false
         t.string :content_type
         t.integer :filesize
         t.string :filepath

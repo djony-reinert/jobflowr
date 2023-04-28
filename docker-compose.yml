@@ -8,8 +8,8 @@ services:
 
   jobflowr-react:
     build:
-      context: .
-      dockerfile: react-js/Dockerfile
+      context: ./react-js
+      dockerfile: Dockerfile
     image: jobflowr-react
     ports:
       - "8000:3000"
