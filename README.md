@@ -82,3 +82,9 @@ Observação: Não é necessário registrar ou logar para usar a aplicação poi
 ## Licença
 
 Este projeto é licenciado sob a Licença MIT. Leia o arquivo [LICENSE](./LICENSE) para mais informações.
+
+## Créditos
+- [Minimal Dashboard - build with React Material UI components](https://github.com/minimal-ui-kit/material-kit-react)
+
+## Contato
+djony.reinert@gmail.com
