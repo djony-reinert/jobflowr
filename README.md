@@ -14,6 +14,20 @@ Uma aplicação deverá ser desenvolvida que faça uso e manipulação do banco 
 
 JobFlowr é um software de recrutamento desenvolvido como trabalho da matéria BAN2 sobre banco relacional. Ele permite criar usuários, candidatos, vagas de trabalho,  aplicar vagas e consultar alguns relatórios.
 
+# Sobre a marca
+
+"JobFlowr" é um nome para um software de recrutamento (ATS) que reproduz a palavra "flower". Como uma flor que floresce e cresce, um bom processo de contratação pode ajudar uma empresa a crescer e ter sucesso. O uso de "flow" no nome também sugere um processo de contratação tranquilo e eficiente que mantém os candidatos em movimento, desde a aplicação até a contratação.
+
+O "r" no final do nome é uma brincadeira com a última letra de "flower" e destina-se a adicionar um pouco de singularidade e memorabilidade ao nome. Também cria uma simetria visual com o "f" no início de "flowr". No geral, "JobFlowr" é um nome cativante e memorável que sugere uma abordagem simplificada e eficiente para rastreamento e contratação de candidatos.
+
+Possíveis slogans:
+- Bloom your business
+- Bloom your business with us
+- Bloom your business with JobFlowr
+
+Logos:
+
+
 ## Tecnologias utilizadas
 
 O projeto foi desenvolvido utilizando as seguintes tecnologias:
