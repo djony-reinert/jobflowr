@@ -34,12 +34,10 @@ users = []
   )
 end
 
-task_categories = []
-10.times do
-  name = Faker::Job.field
-  name = Faker::Job.field while task_categories.any? { |category| category.name == name }
-
-  task_categories << TaskCategory.create!(
+task_categories = ['Phone Screening', 'Resume Review', 'Interview Scheduling', 'Interviewing', 'Reference Check',
+                   'Offer Negotiation', 'Background Check', 'Onboarding', 'Application Review', 'Candidate Sourcing']
+task_categories.each do |name|
+  TaskCategory.create!(
     name:,
     description: Faker::Lorem.sentence,
     created_by: User.ids.sample,
@@ -97,11 +95,11 @@ candidates = []
 
   unique_name = false
   until unique_name
-    if !Candidate.exists?(first_name:, last_name:)
-      unique_name = true
-    else
+    if Candidate.exists?(first_name:, last_name:)
       first_name = Faker::Name.first_name
       last_name = Faker::Name.last_name
+    else
+      unique_name = true
     end
   end
 

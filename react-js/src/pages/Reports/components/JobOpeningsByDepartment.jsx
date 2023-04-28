@@ -3,7 +3,7 @@ import { useTable, useExpanded } from "react-table";
 import { Table, TableCell, TableHead, TableRow, TableBody, IconButton, Typography, Box } from "@mui/material";
 import { KeyboardArrowDown, KeyboardArrowUp } from "@mui/icons-material";
 
-function JobOpeningsByDepartment({ data }) {
+const JobOpeningsByDepartment = ({ data }) => {
   const columns = useMemo(
     () => [
       {
