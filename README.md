@@ -13,7 +13,7 @@ Uma aplicação deverá ser desenvolvida que faça uso e manipulação do banco 
 # Observações gerais
 - Isto é apenas um projeto com fins educacionais, fiz mais do que o solicitado no enunciado apenas para aprimoramento pessoal e profissional.
 - ActiveRecord do Rails não foi utilizado pois isso afetaria o propósito do trabalho. Após o término do trabalho reescreverei todos os métodos com ActiveRecord.
-- Após a conclusão do trabalho ainda trabalharei neste projeto até desenvolver alguns recursos, são eles: Controle de sessão (incluso SSO google, facebook, etc), Upload de arquivos, página para o candidato aplicar-se, mailer.
+- Após a conclusão do trabalho ainda trabalharei neste projeto até desenvolver alguns recursos, são eles: controle de sessão (incluso SSO google, facebook, etc), upload de arquivos, página para o candidato aplicar-se, e mailer.
 
 # Projeto
 
