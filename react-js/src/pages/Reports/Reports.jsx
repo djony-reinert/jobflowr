@@ -9,7 +9,7 @@ import JobApplicationByStatus from "@reactjs/pages/Reports/components/JobApplica
 import JobOpeningsByDepartment from "@reactjs/pages/Reports/components/JobOpeningsByDepartment";
 import { API_REPORTS } from "@reactjs/endpoints";
 
-function ReportsPage() {
+const Reports = () => {
   const { connLoading, connData, doFetch } = useFetchData();
 
   useEffect(() => {
@@ -60,4 +60,4 @@ function ReportsPage() {
   );
 }
 
-export default ReportsPage;
+export default Reports;

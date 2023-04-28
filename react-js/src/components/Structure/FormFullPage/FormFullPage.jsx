@@ -8,7 +8,7 @@ const FormFullPageLayout = ({ title, actionButtonTitle, children, onCancel, isSu
   return (
     <PageLayout title={title}>
       <Form>
-        <Box>
+        <Box sx={{ mb: 2 }}>
           {children}
         </Box>
         <FormFullPageFooter actionButtonTitle={actionButtonTitle} onCancel={onCancel} isSubmitting={isSubmitting} />
