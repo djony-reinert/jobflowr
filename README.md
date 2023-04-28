@@ -10,10 +10,10 @@ Uma aplicação deverá ser desenvolvida que faça uso e manipulação do banco 
 - Operações de Processos de negócio para todas as tabelas associativas do banco de dados - são tabelas que relacionam mais de uma entidade (Exemplo: Efetuar consulta de um Animal da clínica - o que deve relacionar um veterinário, o animal, seu dono e contendo informações do que foi tratado na consulta como doença e medicamentos prescritos)
 - Mínimo de 3 Relatórios do sistema. Cada relatório deve envolver a associação de mais de uma tabela (Exemplo: Relatório dos animais atendidos em um dado período por um dado veterinário)
 
-# Observações
+# Observações gerais
 - Isto é apenas um projeto com fins educacionais, fiz mais do que o solicitado no enunciado apenas para aprimoramento pessoal e profissional.
 - ActiveRecord do Rails não foi utilizado pois isso afetaria o propósito do trabalho. Após o término do trabalho reescreverei todos os métodos com ActiveRecord.
-- Após a conclusão do trabalho ainda trabalharei neste projeto até desenvolver alguns recursos, são eles: Controle de sessão (incluso SSO google, facebook, etc), Upload de arquivos, Página para o candidato aplicar-se.
+- Após a conclusão do trabalho ainda trabalharei neste projeto até desenvolver alguns recursos, são eles: Controle de sessão (incluso SSO google, facebook, etc), Upload de arquivos, página para o candidato aplicar-se, mailer.
 
 # Projeto
 
@@ -69,6 +69,11 @@ Para instalar o JobFlowr, siga estas etapas:
 
 6. Aguarde até que todas as dependências sejam instaladas e o aplicativo esteja em execução.
 7. Abra o seu navegador e acesse `http://localhost:8000` para visualizar o aplicativo JobFlowr.
+
+Observações:
+- Ao iniciar o projeto com docker não é necessário configuração com banco de dados, mas aqui está um arquivo de [backup](https://drive.google.com/file/d/1GwLOKztQC3Kr9Uy1tezqAZ0wfguuaCEb/view?usp=share_link) gerado através do DBeaver caso precise
+- Outra alternativa é tentar usar o [schema gerado pelo Rails](./db/schema.rb) com o comando `bin/rails db:schema:load`
+- O arquivo docker não tem configuração para volumes, saiba mais em: [Volumes | Docker Documentation](https://docs.docker.com/storage/volumes/)
 
 ## Como usar
 
