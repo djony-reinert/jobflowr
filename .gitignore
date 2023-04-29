@@ -12,7 +12,6 @@
 
 # Ignore SQLite databases and migrations
 /db/*.sqlite3*
-/db/migrate/*.rb
 
 # Ignore logs, tempfiles, and pids, but keep the directories
 /log/*
